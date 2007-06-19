@@ -7,7 +7,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.19.3
+Version: 2.19.4
 Release: %mkrel 1
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
@@ -115,9 +115,9 @@ rm -rf $RPM_BUILD_ROOT
 %patch40 -p1 -b .desktopitem
 
 #fix build
-aclocal-1.9
-automake-1.9
+aclocal
 autoconf
+automake
 
 %build
 
