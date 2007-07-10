@@ -1,5 +1,6 @@
 %define lib_major	1
 %define lib_name	%mklibname %{name} %{lib_major}
+%define develname	%mklibname -d %{name}
 
 %define req_eel_version 2.15.91
 %define req_gnomedesktop_version 2.1.0
@@ -7,7 +8,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.19.4
+Version: 2.19.5
 Release: %mkrel 1
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
@@ -82,7 +83,7 @@ Conflicts:	%{_lib}nautilus2
 Nautilus is an excellent file manager for the GNOME desktop environment.
 This package contains libraries used by Nautilus.
 
-%package -n %{lib_name}-devel
+%package -n %{develname}
 Summary:        Libraries and include files for developing nautilus components
 Group:          Development/GNOME and GTK+
 Requires:       %name = %{version}
@@ -90,12 +91,13 @@ Requires:		%{lib_name} = %{version}
 Requires:       eel-devel >= %{req_eel_version}
 Requires:       librsvg-devel >= %{req_librsvg_version}
 Obsoletes:		%{name}-devel
+Obsoletes:		%{lib_name}-devel
 Provides:		%{name}-devel = %{version}
 Provides:		lib%{name}-devel = %{version}
 Conflicts:		%{_lib}nautilus0-devel
 Conflicts:		%{_lib}nautilus2-devel
 
-%description -n %{lib_name}-devel
+%description -n %{develname}
 This package provides the necessary development libraries and include 
 files to allow you to develop nautilus components.
 
@@ -134,16 +136,6 @@ pushd $RPM_BUILD_ROOT%{_datadir}/pixmaps/nautilus
 bzcat %{SOURCE5} | tar xf -
 popd
 
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}):command="%{_bindir}/%{name} --no-desktop" \
-needs="x11" section="System/File Tools" title="Nautilus" \
-longtitle="Nautilus - GNOME file manager" icon="%{name}.png" xdg="true"
-?package(%{name}):command="%{_bindir}/nautilus-file-management-properties" \
-needs="gnome" section="System/Configuration/GNOME" longtitle="Change how files are managed" \
-title="File Management" icon="gnome-fs-directory.png" xdg="true"
-EOF
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="X-MandrivaLinux-System-FileTools" \
@@ -152,7 +144,6 @@ desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="X-MandrivaLinux-System-Configuration-GNOME" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/nautilus-file-management-properties.desktop
-
 
 mkdir -p  $RPM_BUILD_ROOT%{_miconsdir} $RPM_BUILD_ROOT%{_liconsdir}
 cp %{SOURCE1} $RPM_BUILD_ROOT%{_miconsdir}/nautilus.png
@@ -201,7 +192,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_localstatedir}/gnome/desktop
 %dir %{_localstatedir}/gnome/
 %{_bindir}/*
-%{_menudir}/*
 %{_libdir}/bonobo/servers/*
 %{_iconsdir}/*.png
 %{_miconsdir}/*.png
@@ -220,7 +210,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libnautilus*.so.%{lib_major}*
 
 
-%files -n %{lib_name}-devel
+%files -n %{develname}
 %defattr(-, root, root)
 %doc ChangeLog
 %{_includedir}/*
