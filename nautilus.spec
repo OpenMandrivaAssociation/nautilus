@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.19.91
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -35,6 +35,8 @@ Patch32: nautilus-2.17.1-colour.patch
 Patch36: nautilus-2.8.2-supermount.patch
 # (fc) 2.10.1-8mdk don't check sound server status to allow audio preview
 Patch39: nautilus-2.10.1-audiopreview.patch
+# (fc) 2.19.91-2mdv fix .desktop file
+Patch40: nautilus-2.19.91-fixdesktop.patch
 
 BuildRoot:%{_tmppath}/%{name}-%{version}-root
 
@@ -113,6 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 %patch32 -p1 -b .colour
 %patch36 -p1 -b .supermount
 %patch39 -p1 -b .audiopreview
+%patch40 -p1 -b .fixdesktop
 
 %build
 
@@ -128,15 +131,6 @@ GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 pushd $RPM_BUILD_ROOT%{_datadir}/pixmaps/nautilus
 bzcat %{SOURCE5} | tar xf -
 popd
-
-desktop-file-install --vendor="" \
-  --remove-category="Application" \
-  --add-category="X-MandrivaLinux-System-FileTools" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/nautilus.desktop
-desktop-file-install --vendor="" \
-  --remove-category="Application" \
-  --add-category="X-MandrivaLinux-System-Configuration-GNOME" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/nautilus-file-management-properties.desktop
 
 mkdir -p  $RPM_BUILD_ROOT%{_miconsdir} $RPM_BUILD_ROOT%{_liconsdir}
 cp %{SOURCE1} $RPM_BUILD_ROOT%{_miconsdir}/nautilus.png
