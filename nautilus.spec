@@ -149,7 +149,6 @@ mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 %update_mime_database
 %update_desktop_database
 %update_icon_cache hicolor
-%update_icon_cache gnome
 
 %preun
 %preun_uninstall_gconf_schemas apps_nautilus_preferences
@@ -163,7 +162,6 @@ mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 %clean_mime_database
 %clean_desktop_database
 %clean_icon_cache hicolor
-%clean_icon_cache gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
