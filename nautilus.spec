@@ -183,7 +183,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/pixmaps/*
 %{_datadir}/nautilus
 %{_iconsdir}/hicolor/*/apps/nautilus.*
-%{_iconsdir}/gnome/scalable/emblems/emblem-shared.svg
 %_datadir/mime/packages/nautilus.xml
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-1.0
