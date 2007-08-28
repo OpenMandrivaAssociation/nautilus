@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.19.91
-Release: %mkrel 2
+Release: %mkrel 3
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -18,7 +18,6 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.
 Source1: nautilus_16.png
 Source2: nautilus_32.png
 Source3: nautilus_48.png
-Source4: emblem-shared.svg.bz2
 # (fc) 1.0.6-1mdk new default desktop initialization
 Patch2: nautilus-2.18.0-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merged desktop with system desktop
@@ -139,9 +138,6 @@ cp %{SOURCE3} $RPM_BUILD_ROOT%{_liconsdir}/nautilus.png
 
 mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/gnome/desktop \
  $RPM_BUILD_ROOT%{_datadir}/nautilus/default-desktop
-
-mkdir -p $RPM_BUILD_ROOT%{_iconsdir}/gnome/scalable/emblems
-bzcat %{SOURCE4} > $RPM_BUILD_ROOT%{_iconsdir}/gnome/scalable/emblems/emblem-shared.svg
 
 mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
 
