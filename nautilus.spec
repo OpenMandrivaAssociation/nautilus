@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.19.91
-Release: %mkrel 3
+Release: %mkrel 4
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -19,7 +19,7 @@ Source1: nautilus_16.png
 Source2: nautilus_32.png
 Source3: nautilus_48.png
 # (fc) 1.0.6-1mdk new default desktop initialization
-Patch2: nautilus-2.18.0-defaultdesktop.patch
+Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merged desktop with system desktop
 Patch12: nautilus-2.5.1-dynamic.patch
 # (fc) 2.0.5-2mdk enable tree by default, directory are listed before files, don't show files in tree
