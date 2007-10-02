@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.20.0
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -34,6 +34,8 @@ Patch32: nautilus-2.17.1-colour.patch
 Patch36: nautilus-2.8.2-supermount.patch
 # (fc) 2.10.1-8mdk don't check sound server status to allow audio preview
 Patch39: nautilus-2.10.1-audiopreview.patch
+# (fc) 2.20.0-2mdv fix thumbnail incorrect invalidation (GNOME bug #480608)
+Patch40: nautilus-2.20.0-fixthumbnail.patch
 
 BuildRoot:%{_tmppath}/%{name}-%{version}-root
 
@@ -112,6 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %patch32 -p1 -b .colour
 %patch36 -p1 -b .supermount
 %patch39 -p1 -b .audiopreview
+%patch40 -p1 -b .fixthumbnail
 
 %build
 
