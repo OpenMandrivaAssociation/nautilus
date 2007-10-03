@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.20.0
-Release: %mkrel 3
+Release: %mkrel 4
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -36,8 +36,10 @@ Patch36: nautilus-2.8.2-supermount.patch
 Patch39: nautilus-2.10.1-audiopreview.patch
 # (fc) 2.20.0-2mdv fix thumbnail incorrect invalidation (GNOME bug #480608)
 Patch40: nautilus-2.20.0-fixthumbnail.patch
-# (fc) 2.20.0-2mdv fix missing frame for async thumbnails (GNOME bug #478363)
+# (fc) 2.20.0-3mdv fix missing frame for async thumbnails (GNOME bug #478363)
 Patch41: nautilus-2.20.0-fixframethumbnail.patch
+# (fc) 2.20.0-4mdv fix small fonts crash (GNOME bug #454884)
+Patch42: nautilus-2.20.0-fixsmallfontcrash.patch
 
 BuildRoot:%{_tmppath}/%{name}-%{version}-root
 
@@ -118,6 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %patch39 -p1 -b .audiopreview
 %patch40 -p1 -b .fixthumbnail
 %patch41 -p1 -b .fixframethumbnail
+%patch42 -p1 -b .smallfontcrash
 
 %build
 
