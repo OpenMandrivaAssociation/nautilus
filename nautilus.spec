@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.20.0
-Release: %mkrel 4
+Release: %mkrel 5
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -40,15 +40,14 @@ Patch40: nautilus-2.20.0-fixthumbnail.patch
 Patch41: nautilus-2.20.0-fixframethumbnail.patch
 # (fc) 2.20.0-4mdv fix small fonts crash (GNOME bug #454884)
 Patch42: nautilus-2.20.0-fixsmallfontcrash.patch
+# (fc) 2.20.0-5mdv add audio preview support, based on gstreamer or totem (Fedora)
+Patch43: nautilus-2.20-make-audio-preview-work.patch
 
 BuildRoot:%{_tmppath}/%{name}-%{version}-root
 
 Obsoletes: gmc
 Provides: gmc
 
-Requires: mpg123
-Requires: vorbis-tools
-Requires: sox
 Requires: drakxtools-newt >= 1.1.7-46mdk
 # needed for dynamic desktop
 Requires: gnome-vfs2 >= %{req_vfs_version}
@@ -121,6 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %patch40 -p1 -b .fixthumbnail
 %patch41 -p1 -b .fixframethumbnail
 %patch42 -p1 -b .smallfontcrash
+%patch43 -p1 -b .audiopreview
 
 %build
 
@@ -132,10 +132,6 @@ CFLAGS="$RPM_OPT_FLAGS -DUGLY_HACK_TO_DETECT_KDE" %configure2_5x --disable-updat
 rm -rf $RPM_BUILD_ROOT
 
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
-
-pushd $RPM_BUILD_ROOT%{_datadir}/pixmaps/nautilus
-bzcat %{SOURCE5} | tar xf -
-popd
 
 mkdir -p  $RPM_BUILD_ROOT%{_miconsdir} $RPM_BUILD_ROOT%{_liconsdir}
 cp %{SOURCE1} $RPM_BUILD_ROOT%{_miconsdir}/nautilus.png
