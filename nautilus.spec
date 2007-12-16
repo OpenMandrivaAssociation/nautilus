@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.20.0
-Release: %mkrel 7
+Release: %mkrel 8
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -18,6 +18,7 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.
 Source1: nautilus_16.png
 Source2: nautilus_32.png
 Source3: nautilus_48.png
+Patch: nautilus-2.20.0-libbeagle-0.3.0.patch
 # (fc) 1.0.6-1mdk new default desktop initialization
 Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merged desktop with system desktop
@@ -109,6 +110,7 @@ files to allow you to develop nautilus components.
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
+%patch -p1
 %patch12 -p1 -b .dynamic
 %patch2  -p1 -b .defaultdesktop
 %patch22 -p1 -b .mdksettings
@@ -121,6 +123,7 @@ rm -rf $RPM_BUILD_ROOT
 %patch41 -p1 -b .fixframethumbnail
 %patch42 -p1 -b .smallfontcrash
 %patch43 -p1 -b .audiopreview
+autoconf
 
 %build
 
