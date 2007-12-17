@@ -44,7 +44,6 @@ Patch42: nautilus-2.20.0-fixsmallfontcrash.patch
 # (fc) 2.20.0-5mdv add audio preview support, based on gstreamer or totem (Fedora)
 Patch43: nautilus-2.20-make-audio-preview-work.patch
 
-BuildRoot:%{_tmppath}/%{name}-%{version}-root
 
 Obsoletes: gmc
 Provides: gmc
