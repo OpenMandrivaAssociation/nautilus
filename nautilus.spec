@@ -85,6 +85,7 @@ Conflicts:		%{_lib}nautilus2-devel
 This package provides the necessary development libraries and include 
 files to allow you to develop nautilus components.
 
+BuildRoot:%{_tmppath}/%{name}-%{version}-root
 
 %prep
 rm -rf $RPM_BUILD_ROOT
