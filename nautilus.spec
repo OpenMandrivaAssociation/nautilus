@@ -2,14 +2,14 @@
 %define lib_name	%mklibname %{name} %{lib_major}
 %define develname	%mklibname -d %{name}
 
-%define req_eel_version 2.15.91
+%define req_eel_version 2.21.1
 %define req_gnomedesktop_version 2.1.0
 %define req_librsvg_version 2.3.0
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.20.0
-Release: %mkrel 8
+Version: 2.21.1
+Release: %mkrel 1
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -18,32 +18,13 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.
 Source1: nautilus_16.png
 Source2: nautilus_32.png
 Source3: nautilus_48.png
-Patch: nautilus-2.20.0-libbeagle-0.3.0.patch
-# (fc) 1.0.6-1mdk new default desktop initialization
-Patch2: nautilus-defaultdesktop.patch
-# (fc) 1.0.4-4mdk merged desktop with system desktop
-Patch12: nautilus-2.5.1-dynamic.patch
+Patch: nautilus-2.21.1-libbeagle-0.3.0.patch
 # (fc) 2.0.5-2mdk enable tree by default, directory are listed before files, don't show files in tree
 Patch22: nautilus-2.3.7-mdksettings.patch
-# (fc) 2.3.9-2mdk don't show KDE specific links (CVS + me) (Mdk bug #4844)
-Patch28: nautilus-2.10.1-kdedesktop.patch
 # (fc) 2.3.9-3mdk allow editing .desktop files everywhere
 Patch31: nautilus-2.9.1-editdesktop.patch
 # (fc) 2.4.0-1mdk don't colourise selected icon
 Patch32: nautilus-2.17.1-colour.patch
-# (fc) 2.8.2-7mdk don't monitor supermount devices (Mdk bug #14880)
-Patch36: nautilus-2.8.2-supermount.patch
-# (fc) 2.10.1-8mdk don't check sound server status to allow audio preview
-Patch39: nautilus-2.10.1-audiopreview.patch
-# (fc) 2.20.0-2mdv fix thumbnail incorrect invalidation (GNOME bug #480608)
-Patch40: nautilus-2.20.0-fixthumbnail.patch
-# (fc) 2.20.0-3mdv fix missing frame for async thumbnails (GNOME bug #478363)
-Patch41: nautilus-2.20.0-fixframethumbnail.patch
-# (fc) 2.20.0-4mdv fix small fonts crash (GNOME bug #454884)
-Patch42: nautilus-2.20.0-fixsmallfontcrash.patch
-# (fc) 2.20.0-5mdv add audio preview support, based on gstreamer or totem (Fedora)
-Patch43: nautilus-2.20-make-audio-preview-work.patch
-
 
 Obsoletes: gmc
 Provides: gmc
@@ -109,19 +90,10 @@ files to allow you to develop nautilus components.
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
-%patch -p1
-%patch12 -p1 -b .dynamic
-%patch2  -p1 -b .defaultdesktop
+%patch -p1 -b .libbeagle
 %patch22 -p1 -b .mdksettings
-%patch28 -p1 -b .kdedesktop
 %patch31 -p1 -b .editdesktop
 %patch32 -p1 -b .colour
-%patch36 -p1 -b .supermount
-%patch39 -p1 -b .audiopreview
-%patch40 -p1 -b .fixthumbnail
-%patch41 -p1 -b .fixframethumbnail
-%patch42 -p1 -b .smallfontcrash
-%patch43 -p1 -b .audiopreview
 autoconf
 
 %build
