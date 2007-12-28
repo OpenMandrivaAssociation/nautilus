@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.21.1
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -18,13 +18,16 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.
 Source1: nautilus_16.png
 Source2: nautilus_32.png
 Source3: nautilus_48.png
-Patch: nautilus-2.21.1-libbeagle-0.3.0.patch
+# (fc) 1.0.6-1mdk put default launchers on desktop according to product.id (Mandriva specific)
+Patch2: nautilus-defaultdesktop.patch
 # (fc) 2.0.5-2mdk enable tree by default, directory are listed before files, don't show files in tree
 Patch22: nautilus-2.3.7-mdksettings.patch
 # (fc) 2.3.9-3mdk allow editing .desktop files everywhere
 Patch31: nautilus-2.9.1-editdesktop.patch
 # (fc) 2.4.0-1mdk don't colourise selected icon
 Patch32: nautilus-2.17.1-colour.patch
+# fix build with latest libbeagle API
+Patch33: nautilus-2.21.1-libbeagle-0.3.0.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -91,10 +94,13 @@ BuildRoot:%{_tmppath}/%{name}-%{version}-root
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
-%patch -p1 -b .libbeagle
+%patch2 -p1 -b .defaultdesktop
 %patch22 -p1 -b .mdksettings
 %patch31 -p1 -b .editdesktop
 %patch32 -p1 -b .colour
+%patch33 -p1 -b .libbeagle
+
+#needed by patch33
 autoconf
 
 %build
