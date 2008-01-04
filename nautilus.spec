@@ -20,6 +20,8 @@ Source2: nautilus_32.png
 Source3: nautilus_48.png
 # (fc) 1.0.6-1mdk put default launchers on desktop according to product.id (Mandriva specific)
 Patch2: nautilus-defaultdesktop.patch
+# (fc) 1.0.4-4mdk merge desktop with system launcher (used for dynamic, Mandriva specific)
+Patch12: nautilus-dynamic.patch
 # (fc) 2.0.5-2mdk enable tree by default, directory are listed before files, don't show files in tree
 Patch22: nautilus-2.3.7-mdksettings.patch
 # (fc) 2.3.9-3mdk allow editing .desktop files everywhere
@@ -95,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %setup -q
 %patch2 -p1 -b .defaultdesktop
+%patch12 -p1 -b .dynamic
 %patch22 -p1 -b .mdksettings
 %patch31 -p1 -b .editdesktop
 %patch32 -p1 -b .colour
