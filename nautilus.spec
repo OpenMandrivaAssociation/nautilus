@@ -8,8 +8,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.21.1
-Release: %mkrel 4
+Version: 2.21.2
+Release: %mkrel 1
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -30,8 +30,6 @@ Patch28: nautilus-kdedesktop.patch
 Patch32: nautilus-2.17.1-colour.patch
 # fix build with latest libbeagle API
 Patch33: nautilus-2.21.1-libbeagle-0.3.0.patch
-# fix build with glib >= 2.15.1 (SVN)
-Patch34: nautilus-2.21.1-glib2151.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -96,7 +94,6 @@ BuildRoot:%{_tmppath}/%{name}-%{version}-root
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
-%patch34 -p1 -b .glib2151
 %patch2 -p1 -b .defaultdesktop
 %patch12 -p1 -b .dynamic
 %patch22 -p1 -b .mdksettings
