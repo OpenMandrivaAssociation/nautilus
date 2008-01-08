@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.21.1
-Release: %mkrel 3
+Release: %mkrel 4
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -24,19 +24,20 @@ Patch2: nautilus-defaultdesktop.patch
 Patch12: nautilus-dynamic.patch
 # (fc) 2.0.5-2mdk enable tree by default, directory are listed before files, don't show files in tree
 Patch22: nautilus-2.3.7-mdksettings.patch
-# (fc) 2.3.9-3mdk allow editing .desktop files everywhere
-Patch31: nautilus-2.9.1-editdesktop.patch
+# (fc) 2.3.9-2mdk don't show KDE specific links (CVS + me) (Mdk bug #4844)
+Patch28: nautilus-kdedesktop.patch
 # (fc) 2.4.0-1mdk don't colourise selected icon
 Patch32: nautilus-2.17.1-colour.patch
 # fix build with latest libbeagle API
 Patch33: nautilus-2.21.1-libbeagle-0.3.0.patch
+# fix build with glib >= 2.15.1 (SVN)
+Patch34: nautilus-2.21.1-glib2151.patch
 
 Obsoletes: gmc
 Provides: gmc
 
 Requires: drakxtools-newt >= 1.1.7-46mdk
-# needed for dynamic desktop
-Requires: gnome-vfs2 >= %{req_vfs_version}
+Requires: %mklibname gvfs 0
 Requires: %{lib_name} >= %{version}-%{release}
 Requires: eel >= %{req_eel_version}
 
@@ -44,7 +45,6 @@ Requires(post): shared-mime-info desktop-file-utils
 Requires(postun): shared-mime-info desktop-file-utils
 BuildRequires: eel-devel >= %{req_eel_version}
 BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
-BuildRequires: gnome-vfs2-devel >= %{req_vfs_version}
 BuildRequires: librsvg-devel >= %{req_librsvg_version}
 BuildRequires: libjpeg-devel
 BuildRequires: libgnomeui2-devel > 2.5.0
@@ -96,10 +96,11 @@ BuildRoot:%{_tmppath}/%{name}-%{version}-root
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
+%patch34 -p1 -b .glib2151
 %patch2 -p1 -b .defaultdesktop
 %patch12 -p1 -b .dynamic
 %patch22 -p1 -b .mdksettings
-%patch31 -p1 -b .editdesktop
+%patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
 %patch33 -p1 -b .libbeagle
 
