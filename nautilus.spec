@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.21.2
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -30,6 +30,8 @@ Patch28: nautilus-kdedesktop.patch
 Patch32: nautilus-2.17.1-colour.patch
 # fix build with latest libbeagle API
 Patch33: nautilus-2.21.1-libbeagle-0.3.0.patch
+# (fc) 2.21.2-2mdv fix crash when overwriting file (SVN)
+Patch34: nautilus-2.21.2-svnfixes.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -100,6 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
 %patch33 -p1 -b .libbeagle
+%patch34 -p1 -b .svnfixes
 
 #needed by patch33
 autoconf
