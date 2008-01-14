@@ -2,14 +2,14 @@
 %define lib_name	%mklibname %{name} %{lib_major}
 %define develname	%mklibname -d %{name}
 
-%define req_eel_version 2.21.1
+%define req_eel_version 2.21.5
 %define req_gnomedesktop_version 2.1.0
 %define req_librsvg_version 2.3.0
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.21.2
-Release: %mkrel 4
+Version: 2.21.5
+Release: %mkrel 1
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -30,8 +30,6 @@ Patch28: nautilus-kdedesktop.patch
 Patch32: nautilus-2.17.1-colour.patch
 # fix build with latest libbeagle API
 Patch33: nautilus-2.21.1-libbeagle-0.3.0.patch
-# (fc) 2.21.2-2mdv fix crash when overwriting file (SVN)
-Patch34: nautilus-2.21.2-svnfixes.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -43,6 +41,7 @@ Requires: eel >= %{req_eel_version}
 
 Requires(post): shared-mime-info desktop-file-utils
 Requires(postun): shared-mime-info desktop-file-utils
+BuildRequires: glib2-devel >= 2.15.2
 BuildRequires: eel-devel >= %{req_eel_version}
 BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
 BuildRequires: librsvg-devel >= %{req_librsvg_version}
@@ -102,7 +101,6 @@ rm -rf $RPM_BUILD_ROOT
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
 %patch33 -p1 -b .libbeagle
-%patch34 -p1 -b .svnfixes
 
 #needed by patch33
 autoconf
