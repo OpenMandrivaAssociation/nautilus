@@ -8,7 +8,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.21.5
+Version: 2.21.6
 Release: %mkrel 1
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
@@ -41,7 +41,7 @@ Requires: eel >= %{req_eel_version}
 
 Requires(post): shared-mime-info desktop-file-utils
 Requires(postun): shared-mime-info desktop-file-utils
-BuildRequires: glib2-devel >= 2.15.2
+BuildRequires: glib2-devel >= 2.15.3
 BuildRequires: eel-devel >= %{req_eel_version}
 BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
 BuildRequires: librsvg-devel >= %{req_librsvg_version}
