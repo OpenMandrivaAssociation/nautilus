@@ -124,7 +124,7 @@ cp %{SOURCE3} $RPM_BUILD_ROOT%{_liconsdir}/nautilus.png
 mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/gnome/desktop \
  $RPM_BUILD_ROOT%{_datadir}/nautilus/default-desktop
 
-mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0
+mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 
 %{find_lang} %{name} --with-gnome --all-name
 
@@ -168,7 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/nautilus.*
 %_datadir/mime/packages/nautilus.xml
 %dir %{_libdir}/nautilus
-%dir %{_libdir}/nautilus/extensions-1.0
+%dir %{_libdir}/nautilus/extensions-2.0
 
 %files -n %{lib_name}
 %defattr(-, root, root)
