@@ -2,13 +2,13 @@
 %define lib_name	%mklibname %{name} %{lib_major}
 %define develname	%mklibname -d %{name}
 
-%define req_eel_version 2.21.5
+%define req_eel_version 2.21.90
 %define req_gnomedesktop_version 2.1.0
 %define req_librsvg_version 2.3.0
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.21.6
+Version: 2.21.90
 Release: %mkrel 1
 Summary: Nautilus is a file manager for the GNOME desktop environment
 Group: File tools
