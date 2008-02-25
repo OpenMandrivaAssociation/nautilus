@@ -8,8 +8,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.21.91
-Release: %mkrel 2
+Version: 2.21.92
+Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -28,8 +28,6 @@ Patch22: nautilus-2.3.7-mdksettings.patch
 Patch28: nautilus-kdedesktop.patch
 # (fc) 2.4.0-1mdk don't colourise selected icon
 Patch32: nautilus-2.17.1-colour.patch
-# fix build with latest libbeagle API
-Patch33: nautilus-2.21.1-libbeagle-0.3.0.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -100,10 +98,6 @@ rm -rf $RPM_BUILD_ROOT
 %patch22 -p1 -b .mdksettings
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
-%patch33 -p1 -b .libbeagle
-
-#needed by patch33
-autoconf
 
 %build
 
