@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.22.0
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -48,6 +48,7 @@ BuildRequires: libgnomeui2-devel > 2.5.0
 BuildRequires: libORBit2-devel >= 2.9.0
 BuildRequires: libcdda-devel
 BuildRequires: libexif-devel >= 0.6.9
+BuildRequires: exempi-devel
 BuildRequires: libbeagle-devel
 BuildRequires: perl-XML-Parser
 BuildRequires: automake1.9
