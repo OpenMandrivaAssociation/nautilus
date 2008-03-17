@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.22.0
-Release: %mkrel 2
+Release: %mkrel 3
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -28,6 +28,12 @@ Patch22: nautilus-2.3.7-mdksettings.patch
 Patch28: nautilus-kdedesktop.patch
 # (fc) 2.4.0-1mdk don't colourise selected icon
 Patch32: nautilus-2.17.1-colour.patch
+# (fc) 2.21.92-2mdv move beagle and tracker dependency to runtime, not compile time (Fedora)
+Patch33: nautilus-2.21.1-dynamic-search-r2.patch
+# (fc) 2.21.92-2mdv fix RTL build when disabling self-check (Fedora)
+Patch34: nautilus-2.21.92-rtlfix.patch
+# (fc) 2.22.0-3mdv various bug fixes from SVN 
+Patch35: nautilus-2.22.0-svnfixes.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -49,7 +55,6 @@ BuildRequires: libORBit2-devel >= 2.9.0
 BuildRequires: libcdda-devel
 BuildRequires: libexif-devel >= 0.6.9
 BuildRequires: exempi-devel
-BuildRequires: libbeagle-devel
 BuildRequires: perl-XML-Parser
 BuildRequires: automake1.9
 BuildRequires: intltool
@@ -99,10 +104,13 @@ rm -rf $RPM_BUILD_ROOT
 %patch22 -p1 -b .mdksettings
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
+%patch33 -p1 -b .dynamic-search
+%patch34 -p1 -b .rtl
+%patch35 -p1 -b .svnfixes
 
 %build
 
-CFLAGS="$RPM_OPT_FLAGS -DUGLY_HACK_TO_DETECT_KDE" %configure2_5x --disable-update-mimedb
+CFLAGS="$RPM_OPT_FLAGS -DUGLY_HACK_TO_DETECT_KDE -DNAUTILUS_OMIT_SELF_CHECK" %configure2_5x --disable-update-mimedb
 
 %make
 
