@@ -8,8 +8,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.22.0
-Release: %mkrel 4
+Version: 2.22.1
+Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -32,8 +32,6 @@ Patch32: nautilus-2.17.1-colour.patch
 Patch33: nautilus-2.21.1-dynamic-search-r2.patch
 # (fc) 2.21.92-2mdv fix RTL build when disabling self-check (Fedora)
 Patch34: nautilus-2.21.92-rtlfix.patch
-# (fc) 2.22.0-3mdv various bug fixes from SVN 
-Patch35: nautilus-2.22.0-svnfixes.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -106,7 +104,6 @@ rm -rf $RPM_BUILD_ROOT
 %patch32 -p1 -b .colour
 %patch33 -p1 -b .dynamic-search
 %patch34 -p1 -b .rtl
-%patch35 -p1 -b .svnfixes
 
 %build
 
