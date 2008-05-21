@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.22.2
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -32,6 +32,8 @@ Patch32: nautilus-2.17.1-colour.patch
 Patch33: nautilus-2.21.1-dynamic-search-r2.patch
 # (fc) 2.21.92-2mdv fix RTL build when disabling self-check (Fedora)
 Patch34: nautilus-2.21.92-rtlfix.patch
+# (fc) 2.22.2-2mdv auto-unmount ejected medias when mount points are in fstab (Mdv bug #39540)
+Patch35: nautilus-2.22.1-umountfstab.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -104,6 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 %patch32 -p1 -b .colour
 %patch33 -p1 -b .dynamic-search
 %patch34 -p1 -b .rtl
+%patch35 -p1 -b .umountfstab
 
 %build
 
