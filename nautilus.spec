@@ -8,8 +8,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.22.2
-Release: %mkrel 3
+Version: 2.22.3
+Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPL
@@ -34,8 +34,6 @@ Patch33: nautilus-2.21.1-dynamic-search-r2.patch
 Patch34: nautilus-2.21.92-rtlfix.patch
 # (fc) 2.22.2-2mdv auto-unmount ejected medias when mount points are in fstab (Mdv bug #39540)
 Patch35: nautilus-2.22.1-umountfstab.patch
-# (fc) 2.22.2-3mdv various bug fixes from SVN
-Patch36: nautilus-2.22.2-svnfixes.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -109,7 +107,6 @@ rm -rf $RPM_BUILD_ROOT
 %patch33 -p1 -b .dynamic-search
 %patch34 -p1 -b .rtl
 %patch35 -p1 -b .umountfstab
-%patch36 -p1 -b .svnfixes
 
 %build
 
