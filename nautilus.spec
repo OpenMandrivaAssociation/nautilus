@@ -124,7 +124,7 @@ cp %{SOURCE1} $RPM_BUILD_ROOT%{_miconsdir}/nautilus.png
 cp %{SOURCE2} $RPM_BUILD_ROOT%{_iconsdir}/nautilus.png
 cp %{SOURCE3} $RPM_BUILD_ROOT%{_liconsdir}/nautilus.png
 
-mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/gnome/desktop \
+mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/lib/gnome/desktop \
  $RPM_BUILD_ROOT%{_datadir}/nautilus/default-desktop
 
 mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
@@ -158,8 +158,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc README NEWS HACKING AUTHORS MAINTAINERS
 %{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
-%dir %{_localstatedir}/gnome/desktop
-%dir %{_localstatedir}/gnome/
+%dir %{_localstatedir}/lib/gnome/desktop
+%dir %{_localstatedir}/lib/gnome/
 %{_bindir}/*
 %{_libdir}/bonobo/servers/*
 %{_iconsdir}/*.png
