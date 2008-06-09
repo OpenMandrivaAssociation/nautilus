@@ -144,9 +144,13 @@ mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 %preun
 %preun_uninstall_gconf_schemas apps_nautilus_preferences
 
+%if %mdkversion < 200900
 %post -n %{lib_name} -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -n %{lib_name} -p /sbin/ldconfig
+%endif
 
 %postun
 %{clean_menus}
