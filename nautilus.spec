@@ -134,12 +134,14 @@ mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 
 %{find_lang} %{name} --with-gnome --all-name
 
+%if %mdkversion < 200900
 %post
 %{update_menus}
 %post_install_gconf_schemas apps_nautilus_preferences
 %update_mime_database
 %update_desktop_database
 %update_icon_cache hicolor
+%endif
 
 %preun
 %preun_uninstall_gconf_schemas apps_nautilus_preferences
@@ -152,11 +154,13 @@ mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 %postun -n %{lib_name} -p /sbin/ldconfig
 %endif
 
+%if %mdkversion < 200900
 %postun
 %{clean_menus}
 %clean_mime_database
 %clean_desktop_database
 %clean_icon_cache hicolor
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
