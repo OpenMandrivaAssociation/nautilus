@@ -2,13 +2,13 @@
 %define lib_name	%mklibname %{name} %{lib_major}
 %define develname	%mklibname -d %{name}
 
-%define req_eel_version 2.21.90
+%define req_eel_version 2.23.2
 %define req_gnomedesktop_version 2.1.0
 %define req_librsvg_version 2.3.0
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.22.4
+Version: 2.23.4
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
@@ -18,6 +18,7 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.
 Source1: nautilus_16.png
 Source2: nautilus_32.png
 Source3: nautilus_48.png
+Patch: nautilus-2.23.4-missing-headers.patch
 # (fc) 1.0.6-1mdk put default launchers on desktop according to product.id (Mandriva specific)
 Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merge desktop with system launcher (used for dynamic, Mandriva specific)
@@ -31,7 +32,7 @@ Patch32: nautilus-2.17.1-colour.patch
 # (fc) 2.21.92-2mdv move beagle and tracker dependency to runtime, not compile time (Fedora)
 Patch33: nautilus-2.21.1-dynamic-search-r2.patch
 # (fc) 2.21.92-2mdv fix RTL build when disabling self-check (Fedora)
-Patch34: nautilus-2.21.92-rtlfix.patch
+Patch34: nautilus-2.23.1-rtlfix.patch
 # (fc) 2.22.2-2mdv auto-unmount ejected medias when mount points are in fstab (Mdv bug #39540)
 Patch35: nautilus-2.22.1-umountfstab.patch
 
@@ -98,18 +99,21 @@ BuildRoot:%{_tmppath}/%{name}-%{version}-root
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
+%patch -p1
 %patch2 -p1 -b .defaultdesktop
 %patch12 -p1 -b .dynamic
 %patch22 -p1 -b .mdksettings
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
 %patch33 -p1 -b .dynamic-search
-%patch34 -p1 -b .rtl
+#%patch34 -p1 -b .rtl
 %patch35 -p1 -b .umountfstab
 
 %build
 
-CFLAGS="$RPM_OPT_FLAGS -DUGLY_HACK_TO_DETECT_KDE -DNAUTILUS_OMIT_SELF_CHECK" %configure2_5x --disable-update-mimedb
+CFLAGS="$RPM_OPT_FLAGS -DUGLY_HACK_TO_DETECT_KDE" 
+# "-DNAUTILUS_OMIT_SELF_CHECK"
+%configure2_5x --disable-update-mimedb
 
 %make
 
@@ -168,6 +172,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_localstatedir}/lib/gnome/desktop
 %dir %{_localstatedir}/lib/gnome/
 %{_bindir}/*
+%_mandir/man1/*
 %{_libdir}/bonobo/servers/*
 %{_iconsdir}/*.png
 %{_miconsdir}/*.png
@@ -192,3 +197,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644,root,root) %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
+%_datadir/gtk-doc/html/libnautilus-extension
