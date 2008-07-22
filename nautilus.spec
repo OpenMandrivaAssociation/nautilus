@@ -8,7 +8,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.23.4
+Version: 2.23.5
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
@@ -30,7 +30,7 @@ Patch28: nautilus-kdedesktop.patch
 # (fc) 2.4.0-1mdk don't colourise selected icon
 Patch32: nautilus-2.17.1-colour.patch
 # (fc) 2.21.92-2mdv move beagle and tracker dependency to runtime, not compile time (Fedora)
-Patch33: nautilus-2.21.1-dynamic-search-r2.patch
+Patch33: nautilus-2.23.5-dynamic-search.patch
 # (fc) 2.21.92-2mdv fix RTL build when disabling self-check (Fedora)
 Patch34: nautilus-2.23.1-rtlfix.patch
 # (fc) 2.22.2-2mdv auto-unmount ejected medias when mount points are in fstab (Mdv bug #39540)
