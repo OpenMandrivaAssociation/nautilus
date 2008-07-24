@@ -9,7 +9,7 @@
 
 Name: nautilus
 Version: 2.23.5.1
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -23,6 +23,12 @@ Patch: nautilus-2.23.4-missing-headers.patch
 Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merge desktop with system launcher (used for dynamic, Mandriva specific)
 Patch12: nautilus-dynamic.patch
+# gw from Fedora, add support for the "drag to save" protocol
+# http://bugzilla.gnome.org/show_bug.cgi?id=171655
+Patch15:	nautilus-2.22.0-treeview-xds-dnd.patch
+# gw from Fedora, fix crash on weird file infos
+# http://bugzilla.gnome.org/show_bug.cgi?id=519743
+Patch17:	nautilus-filetype-symlink-fix.patch
 # (fc) 2.0.5-2mdk enable tree by default, directory are listed before files, don't show files in tree
 Patch22: nautilus-2.3.7-mdksettings.patch
 # (fc) 2.3.9-2mdk don't show KDE specific links (CVS + me) (Mdk bug #4844)
@@ -102,6 +108,8 @@ rm -rf $RPM_BUILD_ROOT
 %patch -p1
 %patch2 -p1 -b .defaultdesktop
 %patch12 -p1 -b .dynamic
+%patch15 -p1 -b .xds
+%patch17 -p0 -b .symlink
 %patch22 -p1 -b .mdksettings
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
