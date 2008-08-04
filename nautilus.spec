@@ -8,8 +8,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.23.5.1
-Release: %mkrel 2
+Version: 2.23.6.1
+Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -52,7 +52,7 @@ Requires: eel >= %{req_eel_version}
 
 Requires(post): shared-mime-info desktop-file-utils
 Requires(postun): shared-mime-info desktop-file-utils
-BuildRequires: glib2-devel >= 2.15.5
+BuildRequires: glib2-devel >= 2.17.5
 BuildRequires: eel-devel >= %{req_eel_version}
 BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
 BuildRequires: librsvg-devel >= %{req_librsvg_version}
