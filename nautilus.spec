@@ -2,13 +2,13 @@
 %define lib_name	%mklibname %{name} %{lib_major}
 %define develname	%mklibname -d %{name}
 
-%define req_eel_version 2.24.0
+%define req_eel_version 2.25.1
 %define req_gnomedesktop_version 2.1.0
 %define req_librsvg_version 2.3.0
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.24.2
+Version: 2.25.1
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
@@ -52,7 +52,7 @@ Requires: eel >= %{req_eel_version}
 
 Requires(post): shared-mime-info desktop-file-utils
 Requires(postun): shared-mime-info desktop-file-utils
-BuildRequires: glib2-devel >= 2.17.5
+BuildRequires: glib2-devel >= 2.19.0
 BuildRequires: eel-devel >= %{req_eel_version}
 BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
 BuildRequires: librsvg-devel >= %{req_librsvg_version}
@@ -181,7 +181,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_localstatedir}/lib/gnome/
 %{_bindir}/*
 %_mandir/man1/*
-%{_libdir}/bonobo/servers/*
 %{_iconsdir}/*.png
 %{_miconsdir}/*.png
 %{_liconsdir}/*.png
