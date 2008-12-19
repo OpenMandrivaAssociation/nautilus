@@ -8,7 +8,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.25.1
+Version: 2.25.2
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
@@ -18,7 +18,6 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.
 Source1: nautilus_16.png
 Source2: nautilus_32.png
 Source3: nautilus_48.png
-Patch: nautilus-2.23.4-missing-headers.patch
 # (fc) 1.0.6-1mdk put default launchers on desktop according to product.id (Mandriva specific)
 Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merge desktop with system launcher (used for dynamic, Mandriva specific)
@@ -29,8 +28,6 @@ Patch15:	nautilus-2.22.0-treeview-xds-dnd.patch
 # gw from Fedora, fix crash on weird file infos
 # http://bugzilla.gnome.org/show_bug.cgi?id=519743
 Patch17:	nautilus-filetype-symlink-fix.patch
-# (fc) 2.0.5-2mdk enable tree by default, directory are listed before files, don't show files in tree
-Patch22: nautilus-2.3.7-mdksettings.patch
 # (fc) 2.3.9-2mdk don't show KDE specific links (CVS + me) (Mdk bug #4844)
 Patch28: nautilus-kdedesktop.patch
 # (fc) 2.4.0-1mdk don't colourise selected icon
@@ -61,6 +58,7 @@ BuildRequires: libjpeg-devel
 BuildRequires: libgnomeui2-devel > 2.5.0
 BuildRequires: libORBit2-devel >= 2.9.0
 BuildRequires: libcdda-devel
+BuildRequires: libxrender-devel
 BuildRequires: libexif-devel >= 0.6.9
 BuildRequires: exempi-devel
 BuildRequires: automake1.9
@@ -106,12 +104,10 @@ BuildRoot:%{_tmppath}/%{name}-%{version}-root
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
-%patch -p1
 %patch2 -p1 -b .defaultdesktop
 %patch12 -p1 -b .dynamic
 %patch15 -p1 -b .xds
 %patch17 -p0 -b .symlink
-%patch22 -p1 -b .mdksettings
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
 %patch33 -p1 -b .dynamic-search
