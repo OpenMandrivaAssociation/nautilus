@@ -2,7 +2,6 @@
 %define lib_name	%mklibname %{name} %{lib_major}
 %define develname	%mklibname -d %{name}
 
-%define req_eel_version 2.25.1
 %define req_gnomedesktop_version 2.1.0
 %define req_librsvg_version 2.3.0
 %define req_vfs_version 2.14.2
@@ -45,13 +44,11 @@ Provides: gmc
 Requires: drakxtools-newt >= 1.1.7-46mdk
 Requires: %mklibname gvfs 0
 Requires: %{lib_name} >= %{version}-%{release}
-Requires: eel >= %{req_eel_version}
 
 Requires(post): shared-mime-info desktop-file-utils
 Requires(postun): shared-mime-info desktop-file-utils
 BuildRequires: unique-devel
 BuildRequires: glib2-devel >= 2.19.0
-BuildRequires: eel-devel >= %{req_eel_version}
 BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
 BuildRequires: librsvg-devel >= %{req_librsvg_version}
 BuildRequires: libjpeg-devel
@@ -85,7 +82,6 @@ Summary:        Libraries and include files for developing nautilus components
 Group:          Development/GNOME and GTK+
 Requires:       %name = %{version}
 Requires:		%{lib_name} = %{version}
-Requires:       eel-devel >= %{req_eel_version}
 Requires:       librsvg-devel >= %{req_librsvg_version}
 Obsoletes:		%{name}-devel
 Obsoletes:		%{lib_name}-devel
