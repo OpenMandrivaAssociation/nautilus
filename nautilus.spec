@@ -7,7 +7,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.25.4
+Version: 2.25.91
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
@@ -36,7 +36,7 @@ Patch33: nautilus-2.23.5-dynamic-search.patch
 # (fc) 2.21.92-2mdv fix RTL build when disabling self-check (Fedora)
 Patch34: nautilus-2.23.1-rtlfix.patch
 # (fc) 2.22.2-2mdv auto-unmount ejected medias when mount points are in fstab (Mdv bug #39540)
-Patch35: nautilus-2.22.1-umountfstab.patch
+Patch35: nautilus-2.25.91-umountfstab.patch
 
 Obsoletes: gmc
 Provides: gmc
