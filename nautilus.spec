@@ -8,7 +8,7 @@
 
 Name: nautilus
 Version: 2.26.0
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -34,9 +34,15 @@ Patch32: nautilus-2.17.1-colour.patch
 # (fc) 2.21.92-2mdv move beagle and tracker dependency to runtime, not compile time (Fedora)
 Patch33: nautilus-2.23.5-dynamic-search.patch
 # (fc) 2.21.92-2mdv fix RTL build when disabling self-check (Fedora)
-Patch34: nautilus-2.23.1-rtlfix.patch
+Patch34: nautilus-2.26.0-rtlfix.patch
 # (fc) 2.22.2-2mdv auto-unmount ejected medias when mount points are in fstab (Mdv bug #39540)
 Patch35: nautilus-2.25.91-umountfstab.patch
+# (fc) 2.26.0-2mdv allow to lockdown context menu (Novell bug #363122) (SUSE)
+Patch36: nautilus-bnc363122-lockdown-context-menus.diff
+# (fc) 2.26.0-2mdv add a search .desktop file (GNOME bug #350950) (SUSE)
+Patch37: nautilus-bgo350950-search-desktop.diff
+# (fc) 2.26.0-2mdv browser mode 
+Patch38: nautilus-browsermode.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -107,13 +113,20 @@ rm -rf $RPM_BUILD_ROOT
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
 %patch33 -p1 -b .dynamic-search
-#%patch34 -p1 -b .rtl
+%patch34 -p1 -b .rtlfix
 %patch35 -p1 -b .umountfstab
+%patch36 -p1 -b .lockdown-contextmenus
+%patch37 -p1 -b .search-desktop
+%patch38 -p1 -b .browsermode
+
+#needed by patch37
+libtoolize --force
+gtkdocize
+autoreconf
 
 %build
 
 CFLAGS="$RPM_OPT_FLAGS -DUGLY_HACK_TO_DETECT_KDE" 
-# "-DNAUTILUS_OMIT_SELF_CHECK"
 %configure2_5x --disable-update-mimedb
 
 %make
