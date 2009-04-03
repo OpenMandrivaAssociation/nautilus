@@ -7,8 +7,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.26.0
-Release: %mkrel 2
+Version: 2.26.1
+Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -21,9 +21,6 @@ Source3: nautilus_48.png
 Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merge desktop with system launcher (used for dynamic, Mandriva specific)
 Patch12: nautilus-dynamic.patch
-# gw from Fedora, add support for the "drag to save" protocol
-# http://bugzilla.gnome.org/show_bug.cgi?id=171655
-Patch15:	nautilus-2.22.0-treeview-xds-dnd.patch
 # gw from Fedora, fix crash on weird file infos
 # http://bugzilla.gnome.org/show_bug.cgi?id=519743
 Patch17:	nautilus-filetype-symlink-fix.patch
@@ -109,7 +106,6 @@ rm -rf $RPM_BUILD_ROOT
 %setup -q
 %patch2 -p1 -b .defaultdesktop
 %patch12 -p1 -b .dynamic
-%patch15 -p1 -b .xds
 %patch17 -p0 -b .symlink
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
