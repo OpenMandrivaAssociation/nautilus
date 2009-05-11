@@ -7,8 +7,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.26.2
-Release: %mkrel 2
+Version: 2.27.1
+Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -118,8 +118,11 @@ rm -rf $RPM_BUILD_ROOT
 
 #needed by patch37
 libtoolize --force
+aclocal -I m4
 gtkdocize
-autoreconf
+autoconf
+automake
+#autoreconf
 
 %build
 
