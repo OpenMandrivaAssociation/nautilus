@@ -7,7 +7,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.27.4
+Version: 2.27.91
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
@@ -186,6 +186,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_localstatedir}/lib/gnome/desktop
 %dir %{_localstatedir}/lib/gnome/
 %{_bindir}/*
+%_libexecdir/nautilus-convert-metadata
 %_mandir/man1/*
 %{_iconsdir}/*.png
 %{_miconsdir}/*.png
