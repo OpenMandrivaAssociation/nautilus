@@ -8,7 +8,7 @@
 
 Name: nautilus
 Version: 2.27.91
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -40,6 +40,10 @@ Patch36: nautilus-bnc363122-lockdown-context-menus.diff
 Patch37: nautilus-bgo350950-search-desktop.diff
 # (fc) 2.26.0-2mdv browser mode 
 Patch38: nautilus-browsermode.patch
+# (fc) 2.27.91-2mdv fix infinite startup when show_desktop is disabled (Fedora)
+Patch39: nautilus-condrestart.patch
+# (fc) 2.27.91-2mdv fix crash in configuration dialog (GIT)
+Patch40: nautilus-2.27.91-fixconfigcrash.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -115,6 +119,8 @@ rm -rf $RPM_BUILD_ROOT
 %patch36 -p1 -b .lockdown-contextmenus
 %patch37 -p1 -b .search-desktop
 %patch38 -p1 -b .browsermode
+%patch39 -p1 -b .condrestart
+%patch40 -p1 -b .configcrash
 
 #needed by patch37
 libtoolize --force
