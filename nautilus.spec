@@ -7,8 +7,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.27.91
-Release: %mkrel 3
+Version: 2.27.92
+Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -17,9 +17,6 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.
 Source1: nautilus_16.png
 Source2: nautilus_32.png
 Source3: nautilus_48.png
-#gw from git, fix hanging process at logout
-#https://qa.mandriva.com/show_bug.cgi?id=53329
-Patch: nautilus-fix-test-in-uninhibit-code.patch
 # (fc) 1.0.6-1mdk put default launchers on desktop according to product.id (Mandriva specific)
 Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merge desktop with system launcher (used for dynamic, Mandriva specific)
@@ -45,8 +42,6 @@ Patch37: nautilus-bgo350950-search-desktop.diff
 Patch38: nautilus-browsermode.patch
 # (fc) 2.27.91-2mdv fix infinite startup when show_desktop is disabled (Fedora)
 Patch39: nautilus-condrestart.patch
-# (fc) 2.27.91-2mdv fix crash in configuration dialog (GIT)
-Patch40: nautilus-2.27.91-fixconfigcrash.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -111,7 +106,6 @@ BuildRoot:%{_tmppath}/%{name}-%{version}-root
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
-%patch -p1
 %patch2 -p1 -b .defaultdesktop
 %patch12 -p1 -b .dynamic
 %patch17 -p0 -b .symlink
@@ -124,7 +118,6 @@ rm -rf $RPM_BUILD_ROOT
 %patch37 -p1 -b .search-desktop
 %patch38 -p1 -b .browsermode
 %patch39 -p1 -b .condrestart
-%patch40 -p1 -b .configcrash
 
 #needed by patch37
 libtoolize --force
