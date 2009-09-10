@@ -8,7 +8,7 @@
 
 Name: nautilus
 Version: 2.27.92
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -46,7 +46,6 @@ Patch39: nautilus-condrestart.patch
 Obsoletes: gmc
 Provides: gmc
 
-Requires: drakxtools-newt >= 1.1.7-46mdk
 Requires: %mklibname gvfs 0
 Requires: %{lib_name} >= %{version}-%{release}
 
