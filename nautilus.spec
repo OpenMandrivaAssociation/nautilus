@@ -8,7 +8,7 @@
 
 Name: nautilus
 Version: 2.27.92
-Release: %mkrel 2
+Release: %mkrel 3
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -42,6 +42,8 @@ Patch37: nautilus-bgo350950-search-desktop.diff
 Patch38: nautilus-browsermode.patch
 # (fc) 2.27.91-2mdv fix infinite startup when show_desktop is disabled (Fedora)
 Patch39: nautilus-condrestart.patch
+# (fc) 2.27.92-3mdv fix flashing at startup (GIT)
+Patch40: nautilus-2.27.92-fixflashing.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -117,6 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %patch37 -p1 -b .search-desktop
 %patch38 -p1 -b .browsermode
 %patch39 -p1 -b .condrestart
+%patch40 -p1 -b .fixflashing
 
 #needed by patch37
 libtoolize --force
