@@ -8,7 +8,7 @@
 
 Name: nautilus
 Version: 2.28.0
-Release: %mkrel 1
+Release: %mkrel 2
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -45,6 +45,9 @@ Patch39: nautilus-condrestart.patch
 
 Obsoletes: gmc
 Provides: gmc
+
+Obsoletes: gnome-volume-manager
+Provides: gnome-volume-manager
 
 Requires: %mklibname gvfs 0
 Requires: %{lib_name} >= %{version}-%{release}
