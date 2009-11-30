@@ -7,7 +7,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.28.1
+Version: 2.28.2
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
@@ -42,8 +42,6 @@ Patch37: nautilus-bgo350950-search-desktop.diff
 Patch38: nautilus-browsermode.patch
 # (fc) 2.27.91-2mdv fix infinite startup when show_desktop is disabled (Fedora)
 Patch39: nautilus-condrestart.patch
-# (fc) 2.28.1-1mdv fix tracker 0.7 support (Fedora)
-Patch40: nautilus-2.28.1-tracker-0.7-failed-connection.patch
 
 Obsoletes: gmc
 Provides: gmc
@@ -115,7 +113,6 @@ rm -rf $RPM_BUILD_ROOT
 %patch17 -p0 -b .symlink
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
-%patch40 -p1 -b .tracker07
 %patch33 -p1 -b .dynamic-search
 %patch34 -p1 -b .rtlfix
 %patch35 -p1 -b .umountfstab
