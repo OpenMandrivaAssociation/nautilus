@@ -2,12 +2,12 @@
 %define lib_name	%mklibname %{name} %{lib_major}
 %define develname	%mklibname -d %{name}
 
-%define req_gnomedesktop_version 2.1.0
+%define req_gnomedesktop_version 2.29.4
 %define req_librsvg_version 2.3.0
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.28.4
+Version: 2.29.1
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
@@ -38,8 +38,6 @@ Patch35: nautilus-2.25.91-umountfstab.patch
 Patch36: nautilus-bnc363122-lockdown-context-menus.diff
 # (fc) 2.26.0-2mdv add a search .desktop file (GNOME bug #350950) (SUSE)
 Patch37: nautilus-bgo350950-search-desktop.diff
-# (fc) 2.26.0-2mdv browser mode 
-Patch38: nautilus-browsermode.patch
 # (fc) 2.27.91-2mdv fix infinite startup when show_desktop is disabled (Fedora)
 Patch39: nautilus-condrestart.patch
 
@@ -118,7 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %patch35 -p1 -b .umountfstab
 %patch36 -p1 -b .lockdown-contextmenus
 %patch37 -p1 -b .search-desktop
-%patch38 -p1 -b .browsermode
 %patch39 -p1 -b .condrestart
 
 #needed by patch37
