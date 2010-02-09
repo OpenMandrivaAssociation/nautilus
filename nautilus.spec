@@ -7,7 +7,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.29.2
+Version: 2.29.90
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
