@@ -7,7 +7,7 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.29.91
+Version: 2.29.92
 Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
@@ -27,9 +27,7 @@ Patch17:	nautilus-filetype-symlink-fix.patch
 # (fc) 2.3.9-2mdk don't show KDE specific links (CVS + me) (Mdk bug #4844)
 Patch28: nautilus-kdedesktop.patch
 # (fc) 2.4.0-1mdk don't colourise selected icon
-Patch32: nautilus-2.17.1-colour.patch
-# (fc) 2.21.92-2mdv move beagle and tracker dependency to runtime, not compile time (Fedora)
-Patch33: nautilus-2.28.1-dynamic-search.patch
+Patch32: nautilus-2.29.92-colour.patch
 # (fc) 2.21.92-2mdv fix RTL build when disabling self-check (Fedora)
 Patch34: nautilus-2.26.0-rtlfix.patch
 # (fc) 2.22.2-2mdv auto-unmount ejected medias when mount points are in fstab (Mdv bug #39540)
@@ -111,7 +109,6 @@ rm -rf $RPM_BUILD_ROOT
 %patch17 -p0 -b .symlink
 %patch28 -p1 -b .kdedesktop
 %patch32 -p1 -b .colour
-%patch33 -p1 -b .dynamic-search
 %patch34 -p1 -b .rtlfix
 %patch35 -p1 -b .umountfstab
 %patch36 -p1 -b .lockdown-contextmenus
