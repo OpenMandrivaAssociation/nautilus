@@ -7,8 +7,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.29.92.1
-Release: %mkrel 2
+Version: 2.30.0
+Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -17,9 +17,6 @@ Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.
 Source1: nautilus_16.png
 Source2: nautilus_32.png
 Source3: nautilus_48.png
-#gw: prevent white border around desktop after renaming a file on the desktop
-#https://bugzilla.gnome.org/show_bug.cgi?id=605704
-Patch: nautilus-dont-display-white-border-around-desktop.patch
 # (fc) 1.0.6-1mdk put default launchers on desktop according to product.id (Mandriva specific)
 Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merge desktop with system launcher (used for dynamic, Mandriva specific)
@@ -107,7 +104,6 @@ BuildRoot:%{_tmppath}/%{name}-%{version}-root
 rm -rf $RPM_BUILD_ROOT
 
 %setup -q
-%patch -p1
 %patch2 -p1 -b .defaultdesktop
 %patch12 -p1 -b .dynamic
 %patch17 -p0 -b .symlink
