@@ -50,10 +50,11 @@ Requires: %{lib_name} >= %{version}-%{release}
 
 Requires(post): shared-mime-info desktop-file-utils
 Requires(postun): shared-mime-info desktop-file-utils
-BuildRequires: glib2-devel >= 2.19.0
+BuildRequires: glib2-devel >= 2.25.9
 BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
 BuildRequires: librsvg-devel >= %{req_librsvg_version}
 BuildRequires: libjpeg-devel
+BuildRequires: unique-devel
 BuildRequires: libORBit2-devel >= 2.9.0
 BuildRequires: libcdda-devel
 BuildRequires: libxrender-devel
