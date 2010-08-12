@@ -64,6 +64,7 @@ BuildRequires: intltool
 BuildRequires: desktop-file-utils
 BuildRequires: libgcrypt-devel
 BuildRequires: libgail-devel
+BuildRequires: gobject-introspection-devel
 BuildRequires: gtk-doc
 Obsoletes: nautilus-trilobite
 Provides: nautilus-trilobite = %{version}
