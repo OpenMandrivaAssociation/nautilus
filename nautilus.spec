@@ -7,8 +7,8 @@
 %define req_vfs_version 2.14.2
 
 Name: nautilus
-Version: 2.30.1
-Release: %mkrel 2
+Version: 2.31.6
+Release: %mkrel 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
@@ -50,7 +50,6 @@ Requires: %{lib_name} >= %{version}-%{release}
 
 Requires(post): shared-mime-info desktop-file-utils
 Requires(postun): shared-mime-info desktop-file-utils
-BuildRequires: unique-devel
 BuildRequires: glib2-devel >= 2.19.0
 BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
 BuildRequires: librsvg-devel >= %{req_librsvg_version}
@@ -201,7 +200,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n %{lib_name}
 %defattr(-, root, root)
 %{_libdir}/libnautilus*.so.%{lib_major}*
-
+%_libdir/girepository-1.0/Nautilus-2.0.typelib
 
 %files -n %{develname}
 %defattr(-, root, root)
@@ -211,3 +210,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %_datadir/gtk-doc/html/libnautilus-extension
+%_datadir/gir-1.0/Nautilus-2.0.gir
