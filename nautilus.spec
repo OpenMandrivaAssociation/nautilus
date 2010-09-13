@@ -59,6 +59,7 @@ BuildRequires: libcdda-devel
 BuildRequires: libxrender-devel
 BuildRequires: libexif-devel >= 0.6.9
 BuildRequires: exempi-devel
+BuildRequires: unique-devel
 BuildRequires: automake1.9
 BuildRequires: intltool
 BuildRequires: desktop-file-utils
