@@ -54,6 +54,9 @@ BuildRequires: glib2-devel >= 2.25.9
 BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
 BuildRequires: librsvg-devel >= %{req_librsvg_version}
 BuildRequires: libjpeg-devel
+BuildRequires: libice-devel
+BuildRequires: libsm-devel
+BuildRequires: libx11-devel
 BuildRequires: libORBit2-devel >= 2.9.0
 BuildRequires: libcdda-devel
 BuildRequires: libxrender-devel
