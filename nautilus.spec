@@ -57,6 +57,7 @@ BuildRequires: libjpeg-devel
 BuildRequires: libice-devel
 BuildRequires: libsm-devel
 BuildRequires: libx11-devel
+BuildRequires: GConf2
 BuildRequires: libORBit2-devel >= 2.9.0
 BuildRequires: libcdda-devel
 BuildRequires: libxrender-devel
