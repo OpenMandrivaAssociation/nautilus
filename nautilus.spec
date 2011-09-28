@@ -8,7 +8,7 @@
 
 Name: nautilus
 Version: 2.32.2.1
-Release: %mkrel 4
+Release: %mkrel 3
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
