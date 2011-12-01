@@ -106,7 +106,7 @@ files to allow you to develop nautilus components.
 BuildRoot:%{_tmppath}/%{name}-%{version}-root
 
 %prep
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %setup -q
 %patch2 -p1 -b .defaultdesktop
@@ -136,19 +136,19 @@ CFLAGS="$RPM_OPT_FLAGS -DUGLY_HACK_TO_DETECT_KDE"
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
-mkdir -p  $RPM_BUILD_ROOT%{_miconsdir} $RPM_BUILD_ROOT%{_liconsdir}
-cp %{SOURCE1} $RPM_BUILD_ROOT%{_miconsdir}/nautilus.png
-cp %{SOURCE2} $RPM_BUILD_ROOT%{_iconsdir}/nautilus.png
-cp %{SOURCE3} $RPM_BUILD_ROOT%{_liconsdir}/nautilus.png
+mkdir -p  %{buildroot}%{_miconsdir} %{buildroot}%{_liconsdir}
+cp %{SOURCE1} %{buildroot}%{_miconsdir}/nautilus.png
+cp %{SOURCE2} %{buildroot}%{_iconsdir}/nautilus.png
+cp %{SOURCE3} %{buildroot}%{_liconsdir}/nautilus.png
 
-mkdir -p $RPM_BUILD_ROOT%{_localstatedir}/lib/gnome/desktop \
- $RPM_BUILD_ROOT%{_datadir}/nautilus/default-desktop
+mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
+ %{buildroot}%{_datadir}/nautilus/default-desktop
 
-mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
+mkdir -p %{buildroot}%{_libdir}/nautilus/extensions-2.0
 
 %{find_lang} %{name} --with-gnome --all-name
 
@@ -181,7 +181,7 @@ mkdir -p $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0
 %endif
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
