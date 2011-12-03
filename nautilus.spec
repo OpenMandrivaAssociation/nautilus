@@ -1,15 +1,17 @@
 %define lib_major	1
+%define gir_major	3.0
 %define lib_name	%mklibname %{name} %{lib_major}
+%define girname	%mklibname %{name}-gir %{gir_major}
 %define develname	%mklibname -d %{name}
 
 Name: nautilus
-Version: 2.32.2.1
-Release: 5
+Version: 3.2.1
+Release: 1
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
 URL: http://www.gnome.org/projects/nautilus/
-Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.bz2
+Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.xz
 # (fc) 1.0.6-1mdk put default launchers on desktop according to product.id (Mandriva specific)
 Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merge desktop with system launcher (used for dynamic, Mandriva specific)
@@ -32,34 +34,16 @@ Patch37: nautilus-bgo350950-search-desktop.diff
 # (fc) 2.27.91-2mdv fix infinite startup when show_desktop is disabled (Fedora)
 Patch39: nautilus-condrestart.patch
 
-BuildRequires: glib2-devel >= 2.25.9
-BuildRequires: gnome-desktop-devel >= 2.29.9
-BuildRequires: librsvg-devel >= 2.3.0
-BuildRequires: libjpeg-devel
-BuildRequires: libice-devel
-BuildRequires: libsm-devel
-BuildRequires: libx11-devel
-BuildRequires: GConf2
-BuildRequires: libORBit2-devel >= 2.9.0
-BuildRequires: libcdda-devel
-BuildRequires: libxrender-devel
-BuildRequires: libexif-devel >= 0.6.9
-BuildRequires: exempi-devel
-BuildRequires: unique-devel
-BuildRequires: automake1.9
-BuildRequires: intltool
-BuildRequires: desktop-file-utils
-BuildRequires: libgcrypt-devel
-BuildRequires: libgail-devel
-BuildRequires: gobject-introspection-devel
-BuildRequires: gtk-doc
-Obsoletes: nautilus-trilobite
-Provides: nautilus-trilobite = %{version}
-Obsoletes: gmc
-Provides: gmc
-Obsoletes: gnome-volume-manager
-Provides: gnome-volume-manager
-Requires: %mklibname gvfs 0
+BuildRequires:	intltool
+BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(gtk+-3.0) >= 3.1.6
+BuildRequires:	pkgconfig(glib-2.0) >= 2.29.13
+BuildRequires:	pkgconfig(gail-3.0)
+BuildRequires:	pkgconfig(gnome-desktop-3.0) >= 3.0.0
+BuildRequires:	pkgconfig(libnotify) >= 0.7.0
+BuildRequires:	pkgconfig(exempi-2.0)
+BuildRequires:	pkgconfig(libexif)
+
 Requires: %{lib_name} >= %{version}-%{release}
 Requires(post): shared-mime-info desktop-file-utils
 Requires(postun): shared-mime-info desktop-file-utils
@@ -70,21 +54,26 @@ Nautilus is an excellent file manager for the GNOME desktop environment.
 %package -n %{lib_name}
 Summary:        Libraries for Nautilus File manager
 Group:          System/Libraries
-Conflicts:	%{_lib}nautilus2
 
 %description -n %{lib_name}
 Nautilus is an excellent file manager for the GNOME desktop environment.
 This package contains libraries used by Nautilus.
 
+%package -n %{girname}
+Summary:        GObject Introspection interface description for %{name}
+Group:          System/Libraries
+Requires:       %{lib_name} = %{version}-%{release}
+Conflicts:	%{lib_name} < 3.2.1
+
+%description -n %{girname}
+GObject Introspection interface description for %{name}.
+
 %package -n %{develname}
 Summary:        Libraries and include files for developing nautilus components
 Group:          Development/GNOME and GTK+
-Requires:       %name = %{version}
 Requires:		%{lib_name} = %{version}
+%rename			%{name}-devel
 Obsoletes:		%{lib_name}-devel
-Provides:		%{name}-devel = %{version}
-Conflicts:		%{_lib}nautilus0-devel
-Conflicts:		%{_lib}nautilus2-devel
 
 %description -n %{develname}
 This package provides the necessary development libraries and include 
@@ -94,72 +83,68 @@ files to allow you to develop nautilus components.
 rm -rf %{buildroot}
 
 %setup -q
-%patch2 -p1 -b .defaultdesktop
-%patch12 -p1 -b .dynamic
-%patch17 -p0 -b .symlink
-%patch28 -p1 -b .kdedesktop
-%patch32 -p1 -b .colour
-%patch34 -p1 -b .rtlfix
-%patch35 -p1 -b .umountfstab
-%patch36 -p1 -b .lockdown-contextmenus
-%patch37 -p1 -b .search-desktop
-%patch39 -p1 -b .condrestart
-
-#needed by patch37
-libtoolize --force
-aclocal -I m4
-gtkdocize
-autoconf
-automake
-#autoreconf
+#patch2 -p1 -b .defaultdesktop
+#patch12 -p1 -b .dynamic
+#patch17 -p0 -b .symlink
+#patch28 -p1 -b .kdedesktop
+#patch32 -p1 -b .colour
+#patch34 -p1 -b .rtlfix
+#patch35 -p1 -b .umountfstab
+#patch36 -p1 -b .lockdown-contextmenus
+#patch37 -p1 -b .search-desktop
+#patch39 -p1 -b .condrestart
 
 %build
-
-CFLAGS="$RPM_OPT_FLAGS -DUGLY_HACK_TO_DETECT_KDE" 
-%configure2_5x --disable-update-mimedb
+%configure2_5x \
+	--disable-static \
+	--disable-update-mimedb \
+	--disable-schemas-compile
 
 %make
 
 %install
 rm -rf %{buildroot}
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
-find %{buildroot}%{_libdir} -name '*.la' -type f -delete -print
+%makeinstall_std
+find %{buildroot} -name "*.la" -exec rm -rf {} \;
 
 mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
- %{buildroot}%{_datadir}/nautilus/default-desktop
-
-mkdir -p %{buildroot}%{_libdir}/nautilus/extensions-2.0
+	%{buildroot}%{_datadir}/nautilus/default-desktop \
+	%{buildroot}%{_libdir}/nautilus/extensions-2.0
 
 %{find_lang} %{name} --with-gnome --all-name
 
-%preun
-%preun_uninstall_gconf_schemas apps_nautilus_preferences
-
 %files -f %{name}.lang
 %doc README NEWS HACKING AUTHORS MAINTAINERS
-%{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 %dir %{_localstatedir}/lib/gnome/desktop
 %dir %{_localstatedir}/lib/gnome/
+%{_sysconfdir}/xdg/autostart/nautilus-autostart.desktop
 %{_bindir}/*
 %_libexecdir/nautilus-convert-metadata
-%_mandir/man1/*
 %{_datadir}/applications/*
-%{_datadir}/pixmaps/*
-%{_datadir}/nautilus
 %{_iconsdir}/hicolor/*/apps/nautilus.*
-%_datadir/mime/packages/nautilus.xml
+%{_datadir}/GConf/gsettings/nautilus.convert
+%{_datadir}/dbus-1/services/org.gnome.Nautilus.service
+%{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
+%{_datadir}/mime/packages/nautilus.xml
+%{_datadir}/nautilus
+%{_datadir}/pixmaps/*
 %dir %{_libdir}/nautilus
 %dir %{_libdir}/nautilus/extensions-2.0
+%dir %{_libdir}/nautilus/extensions-3.0
+%{_libdir}/nautilus/extensions-3.0/libnautilus-sendto.so
+%{_mandir}/man1/*
 
 %files -n %{lib_name}
 %{_libdir}/libnautilus*.so.%{lib_major}*
-%_libdir/girepository-1.0/Nautilus-2.0.typelib
+
+%files -n %{girname}
+%{_libdir}/girepository-1.0/Nautilus-%{gir_major}.typelib
 
 %files -n %{develname}
 %doc ChangeLog
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
-%_datadir/gtk-doc/html/libnautilus-extension
-%_datadir/gir-1.0/Nautilus-2.0.gir
+%{_datadir}/gtk-doc/html/libnautilus-extension
+%{_datadir}/gir-1.0/Nautilus-%{gir_major}.gir
 
