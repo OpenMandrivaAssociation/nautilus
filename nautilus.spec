@@ -2,21 +2,14 @@
 %define lib_name	%mklibname %{name} %{lib_major}
 %define develname	%mklibname -d %{name}
 
-%define req_gnomedesktop_version 2.29.91
-%define req_librsvg_version 2.3.0
-%define req_vfs_version 2.14.2
-
 Name: nautilus
 Version: 2.32.2.1
-Release: %mkrel 4
+Release: 5
 Summary: File manager for the GNOME desktop environment
 Group: File tools
 License: GPLv2+
 URL: http://www.gnome.org/projects/nautilus/
 Source0: ftp://ftp.gnome.org/pub/GNOME/sources/nautilus/nautilus-%{version}.tar.bz2
-Source1: nautilus_16.png
-Source2: nautilus_32.png
-Source3: nautilus_48.png
 # (fc) 1.0.6-1mdk put default launchers on desktop according to product.id (Mandriva specific)
 Patch2: nautilus-defaultdesktop.patch
 # (fc) 1.0.4-4mdk merge desktop with system launcher (used for dynamic, Mandriva specific)
@@ -39,20 +32,9 @@ Patch37: nautilus-bgo350950-search-desktop.diff
 # (fc) 2.27.91-2mdv fix infinite startup when show_desktop is disabled (Fedora)
 Patch39: nautilus-condrestart.patch
 
-Obsoletes: gmc
-Provides: gmc
-
-Obsoletes: gnome-volume-manager
-Provides: gnome-volume-manager
-
-Requires: %mklibname gvfs 0
-Requires: %{lib_name} >= %{version}-%{release}
-
-Requires(post): shared-mime-info desktop-file-utils
-Requires(postun): shared-mime-info desktop-file-utils
 BuildRequires: glib2-devel >= 2.25.9
-BuildRequires: gnome-desktop-devel >= %{req_gnomedesktop_version}
-BuildRequires: librsvg-devel >= %{req_librsvg_version}
+BuildRequires: gnome-desktop-devel >= 2.29.9
+BuildRequires: librsvg-devel >= 2.3.0
 BuildRequires: libjpeg-devel
 BuildRequires: libice-devel
 BuildRequires: libsm-devel
@@ -73,6 +55,14 @@ BuildRequires: gobject-introspection-devel
 BuildRequires: gtk-doc
 Obsoletes: nautilus-trilobite
 Provides: nautilus-trilobite = %{version}
+Obsoletes: gmc
+Provides: gmc
+Obsoletes: gnome-volume-manager
+Provides: gnome-volume-manager
+Requires: %mklibname gvfs 0
+Requires: %{lib_name} >= %{version}-%{release}
+Requires(post): shared-mime-info desktop-file-utils
+Requires(postun): shared-mime-info desktop-file-utils
 
 %description
 Nautilus is an excellent file manager for the GNOME desktop environment.
@@ -91,19 +81,14 @@ Summary:        Libraries and include files for developing nautilus components
 Group:          Development/GNOME and GTK+
 Requires:       %name = %{version}
 Requires:		%{lib_name} = %{version}
-Requires:       librsvg-devel >= %{req_librsvg_version}
-Obsoletes:		%{name}-devel
 Obsoletes:		%{lib_name}-devel
 Provides:		%{name}-devel = %{version}
-Provides:		lib%{name}-devel = %{version}
 Conflicts:		%{_lib}nautilus0-devel
 Conflicts:		%{_lib}nautilus2-devel
 
 %description -n %{develname}
 This package provides the necessary development libraries and include 
 files to allow you to develop nautilus components.
-
-BuildRoot:%{_tmppath}/%{name}-%{version}-root
 
 %prep
 rm -rf %{buildroot}
@@ -137,13 +122,8 @@ CFLAGS="$RPM_OPT_FLAGS -DUGLY_HACK_TO_DETECT_KDE"
 
 %install
 rm -rf %{buildroot}
-
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
-
-mkdir -p  %{buildroot}%{_miconsdir} %{buildroot}%{_liconsdir}
-cp %{SOURCE1} %{buildroot}%{_miconsdir}/nautilus.png
-cp %{SOURCE2} %{buildroot}%{_iconsdir}/nautilus.png
-cp %{SOURCE3} %{buildroot}%{_liconsdir}/nautilus.png
+find %{buildroot}%{_libdir} -name '*.la' -type f -delete -print
 
 mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
  %{buildroot}%{_datadir}/nautilus/default-desktop
@@ -152,39 +132,10 @@ mkdir -p %{buildroot}%{_libdir}/nautilus/extensions-2.0
 
 %{find_lang} %{name} --with-gnome --all-name
 
-%if %mdkversion < 200900
-%post
-%{update_menus}
-%post_install_gconf_schemas apps_nautilus_preferences
-%update_mime_database
-%update_desktop_database
-%update_icon_cache hicolor
-%endif
-
 %preun
 %preun_uninstall_gconf_schemas apps_nautilus_preferences
 
-%if %mdkversion < 200900
-%post -n %{lib_name} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{lib_name} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%clean_mime_database
-%clean_desktop_database
-%clean_icon_cache hicolor
-%endif
-
-%clean
-rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr(-,root,root)
 %doc README NEWS HACKING AUTHORS MAINTAINERS
 %{_sysconfdir}/gconf/schemas/apps_nautilus_preferences.schemas
 %dir %{_localstatedir}/lib/gnome/desktop
@@ -192,9 +143,6 @@ rm -rf %{buildroot}
 %{_bindir}/*
 %_libexecdir/nautilus-convert-metadata
 %_mandir/man1/*
-%{_iconsdir}/*.png
-%{_miconsdir}/*.png
-%{_liconsdir}/*.png
 %{_datadir}/applications/*
 %{_datadir}/pixmaps/*
 %{_datadir}/nautilus
@@ -204,16 +152,14 @@ rm -rf %{buildroot}
 %dir %{_libdir}/nautilus/extensions-2.0
 
 %files -n %{lib_name}
-%defattr(-, root, root)
 %{_libdir}/libnautilus*.so.%{lib_major}*
 %_libdir/girepository-1.0/Nautilus-2.0.typelib
 
 %files -n %{develname}
-%defattr(-, root, root)
 %doc ChangeLog
 %{_includedir}/*
-%attr(644,root,root) %{_libdir}/*.la
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %_datadir/gtk-doc/html/libnautilus-extension
 %_datadir/gir-1.0/Nautilus-2.0.gir
+
