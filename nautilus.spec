@@ -90,6 +90,7 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %dir %{_libdir}/nautilus/extensions-3.0
 %{_libdir}/nautilus/extensions-3.0/libnautilus-sendto.so
 %{_datadir}/applications/*
+%{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
 %{_datadir}/GConf/gsettings/nautilus.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
