@@ -1,6 +1,6 @@
 %define major	1
 %define gir_major	3.0
-%define libname	%mklibname %{name} %{major}
+%define libname	%mklibname %{name}-extension %{major}
 %define girname	%mklibname %{name}-gir %{gir_major}
 %define develname	%mklibname -d %{name}
 
@@ -31,6 +31,7 @@ Nautilus is an excellent file manager for the GNOME desktop environment.
 %package -n %{libname}
 Summary:        Libraries for Nautilus File manager
 Group:          System/Libraries
+Obsoletes:	%{_lib}nautilus1 < 3.4.1-1
 
 %description -n %{libname}
 Nautilus is an excellent file manager for the GNOME desktop environment.
@@ -94,7 +95,6 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_datadir}/glib-2.0/schemas/org.gnome.nautilus.gschema.xml
 %{_datadir}/mime/packages/nautilus.xml
 %{_datadir}/nautilus
-%{_datadir}/pixmaps/*
 %{_iconsdir}/hicolor/*/apps/nautilus.*
 %{_mandir}/man1/*
 
