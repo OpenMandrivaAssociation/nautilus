@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   nautilus-3.6.3.tar.xz: ce2eee2ed01a174c9d07ec0dbe083dc50e2fea2a
+sources:
+  nautilus-3.8.1.tar.xz: 604a8dd83434910a92bf2eb7e3a0352b920d8f80
