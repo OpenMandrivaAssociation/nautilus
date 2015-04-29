@@ -8,7 +8,7 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	3.14.0
+Version:	 3.16.1
 Release:	2
 Group:		File tools
 License:	GPLv2+
@@ -50,7 +50,7 @@ Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%{_lib}nautilus-devel < 3.8.1-2
 
 %description -n %{devname}
-This package provides the necessary development libraries and include 
+This package provides the necessary development libraries and include
 files to allow you to develop nautilus components.
 
 %package -n %{girname}
