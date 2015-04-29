@@ -101,7 +101,6 @@ echo "OnlyShowIn=GNOME;" >> %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-aut
 %{_datadir}/gnome-shell/search-providers/%{name}-search-provider.ini
 %{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.%{name}.gschema.xml
-%{_datadir}/mime/packages/%{name}.xml
 %{_mandir}/man1/*
 %{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
 
