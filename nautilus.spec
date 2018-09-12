@@ -8,25 +8,29 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	3.18.3
+Version:	3.28.1
 Release:	1
 Group:		File tools
 License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
+BuildRequires:	gtk-doc
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(exempi-2.0)
 BuildRequires:	pkgconfig(gail-3.0)
+BuildRequires:	pkgconfig(gexiv2)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.33.13
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(gnome-autoar-0)
 BuildRequires:	pkgconfig(gnome-desktop-3.0) >= 3.0.0
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	pkgconfig(gtk+-3.0) >= 3.5.12
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libnotify) >= 0.7.0
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
-BuildRequires:	pkgconfig(tracker-sparql-1.0)
+BuildRequires:	pkgconfig(tracker-sparql-2.0)
 BuildRequires:	pkgconfig(x11)
+BuildRequires:	meson
 Suggests:	tracker
 
 %description
@@ -66,43 +70,46 @@ GObject Introspection interface description for %{name}.
 %apply_patches
 
 %build
-%configure \
-	--disable-static \
-	--disable-update-mimedb \
-	--disable-schemas-compile
-%make
+%meson \
+	-Ddocs=true \
+	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
+%meson_build
 
 %install
-%makeinstall_std
+%meson_install
 
 mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 	%{buildroot}%{_datadir}/%{name}/default-desktop \
 	%{buildroot}%{_libdir}/%{name}/extensions-2.0
 
 # only start in GNOME
-echo "OnlyShowIn=GNOME;" >> %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
+#echo "OnlyShowIn=GNOME;" >> #{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
 
 %find_lang %{name} --with-gnome --all-name
 
 %files -f %{name}.lang
-%doc README NEWS HACKING AUTHORS MAINTAINERS
+%doc NEWS
 %dir %{_localstatedir}/lib/gnome/desktop
 %dir %{_localstatedir}/lib/gnome/
-%{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
+#{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
 %{_bindir}/*
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/extensions-3.0
 %{_libdir}/%{name}/extensions-3.0/lib%{name}-sendto.so
-%{_libexecdir}/%{name}-convert-metadata
+#{_libexecdir}/%{name}-convert-metadata
 %{_datadir}/applications/*
 %{_datadir}/%{name}
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
-%{_datadir}/gnome-shell/search-providers/%{name}-search-provider.ini
-%{_datadir}/GConf/gsettings/%{name}.convert
+%{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
+#{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.%{name}.gschema.xml
 %{_mandir}/man1/*
-%{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
+#{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
+%{_libdir}/%{name}/extensions-3.0/lib%{name}-image-properties.so
+%{_datadir}/metainfo/org.gnome.Nautilus.appdata.xml
+%{_iconsdir}/hicolor/*/apps/*gnome*.*
+
 
 %files -n %{libname}
 %{_libdir}/libnautilus-extension.so.%{major}*
@@ -116,4 +123,6 @@ echo "OnlyShowIn=GNOME;" >> %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-aut
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %{_datadir}/gir-1.0/Nautilus-%{api}.gir
+
+%exclude /usr/lib/debug/usr/lib64/nautilus/extensions-3.0/libnautilus-image-properties.so-3.28.1-1.x86_64.debug
 
