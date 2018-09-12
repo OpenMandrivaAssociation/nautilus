@@ -88,7 +88,7 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %find_lang %{name} --with-gnome --all-name
 
 %files -f %{name}.lang
-%doc README NEWS HACKING AUTHORS MAINTAINERS
+%doc README NEWS
 %dir %{_localstatedir}/lib/gnome/desktop
 %dir %{_localstatedir}/lib/gnome/
 #{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
@@ -96,16 +96,16 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/extensions-3.0
 %{_libdir}/%{name}/extensions-3.0/lib%{name}-sendto.so
-%{_libexecdir}/%{name}-convert-metadata
+#{_libexecdir}/%{name}-convert-metadata
 %{_datadir}/applications/*
 %{_datadir}/%{name}
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
-%{_datadir}/gnome-shell/search-providers/%{name}-search-provider.ini
-%{_datadir}/GConf/gsettings/%{name}.convert
+#{_datadir}/gnome-shell/search-providers/%{name}-search-provider.ini
+#{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.%{name}.gschema.xml
 %{_mandir}/man1/*
-%{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
+#{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
 
 %files -n %{libname}
 %{_libdir}/libnautilus-extension.so.%{major}*
