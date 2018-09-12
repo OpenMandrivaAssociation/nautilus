@@ -88,7 +88,7 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %find_lang %{name} --with-gnome --all-name
 
 %files -f %{name}.lang
-%doc README NEWS
+%doc NEWS
 %dir %{_localstatedir}/lib/gnome/desktop
 %dir %{_localstatedir}/lib/gnome/
 #{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
