@@ -27,6 +27,7 @@ BuildRequires:	pkgconfig(libnotify) >= 0.7.0
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
 BuildRequires:	pkgconfig(tracker-sparql-2.0)
 BuildRequires:	pkgconfig(x11)
+BuildRequires:	meson
 Suggests:	tracker
 
 %description
@@ -66,14 +67,13 @@ GObject Introspection interface description for %{name}.
 %apply_patches
 
 %build
-%configure \
-	--disable-static \
-	--disable-update-mimedb \
-	--disable-schemas-compile
-%make
+%meson \
+	-Ddocs=true \
+	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
+%meson_build
 
 %install
-%makeinstall_std
+%meson_install
 
 mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 	%{buildroot}%{_datadir}/%{name}/default-desktop \
