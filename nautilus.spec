@@ -101,11 +101,15 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_datadir}/%{name}
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
-#{_datadir}/gnome-shell/search-providers/%{name}-search-provider.ini
+%{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
 #{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.%{name}.gschema.xml
 %{_mandir}/man1/*
 #{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
+%{_libdir}/%{name}/extensions-3.0/lib%{name}-image-properties.so
+%{_datadir}/metainfo/org.gnome.Nautilus.appdata.xml
+%{_iconsdir}/hicolor/*/apps/*gnome*.*
+
 
 %files -n %{libname}
 %{_libdir}/libnautilus-extension.so.%{major}*
@@ -119,4 +123,6 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %{_datadir}/gir-1.0/Nautilus-%{api}.gir
+
+%excluse /usr/lib/debug/usr/lib64/nautilus/extensions-3.0/libnautilus-image-properties.so-3.28.1-1.x86_64.debug
 
