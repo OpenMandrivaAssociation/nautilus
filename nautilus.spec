@@ -20,6 +20,7 @@ BuildRequires:	pkgconfig(gail-3.0)
 BuildRequires:	pkgconfig(gexiv2)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.33.13
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(gnome-autoar-0)
 BuildRequires:	pkgconfig(gnome-desktop-3.0) >= 3.0.0
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	pkgconfig(gtk+-3.0) >= 3.5.12
