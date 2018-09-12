@@ -124,5 +124,5 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_libdir}/pkgconfig/*
 %{_datadir}/gir-1.0/Nautilus-%{api}.gir
 
-%excluse /usr/lib/debug/usr/lib64/nautilus/extensions-3.0/libnautilus-image-properties.so-3.28.1-1.x86_64.debug
+%exclude /usr/lib/debug/usr/lib64/nautilus/extensions-3.0/libnautilus-image-properties.so-3.28.1-1.x86_64.debug
 
