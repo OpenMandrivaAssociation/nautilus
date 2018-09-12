@@ -83,7 +83,7 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 	%{buildroot}%{_libdir}/%{name}/extensions-2.0
 
 # only start in GNOME
-echo "OnlyShowIn=GNOME;" >> %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
+#echo "OnlyShowIn=GNOME;" >> #{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
 
 %find_lang %{name} --with-gnome --all-name
 
@@ -91,7 +91,7 @@ echo "OnlyShowIn=GNOME;" >> %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-aut
 %doc README NEWS HACKING AUTHORS MAINTAINERS
 %dir %{_localstatedir}/lib/gnome/desktop
 %dir %{_localstatedir}/lib/gnome/
-%{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
+#{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
 %{_bindir}/*
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/extensions-3.0
