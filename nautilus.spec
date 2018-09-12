@@ -17,6 +17,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{ve
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(exempi-2.0)
 BuildRequires:	pkgconfig(gail-3.0)
+BuildRequires:	pkgconfig(gexiv2)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.33.13
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gnome-desktop-3.0) >= 3.0.0
