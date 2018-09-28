@@ -8,7 +8,7 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	3.28.1
+Version:	3.30.0
 Release:	1
 Group:		File tools
 License:	GPLv2+
