@@ -31,6 +31,7 @@ BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
 BuildRequires:	pkgconfig(tracker-sparql-2.0)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	meson
+BuildRequires:	pkgconfig(libseccomp)
 Suggests:	tracker
 
 %description
