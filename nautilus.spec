@@ -36,7 +36,8 @@ BuildRequires:	pkgconfig(libnotify) >= 0.7.0
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
 BuildRequires:	pkgconfig(tracker-sparql-2.0)
 BuildRequires:	pkgconfig(x11)
-BuildRequires:	meson
+# 0.50.0 contains issues. 0.50.1 should fix it. So for now try force old.
+BuildRequires:	meson = 0.49.2
 BuildRequires:	pkgconfig(libseccomp)
 
 Requires:	gvfs
