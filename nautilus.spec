@@ -8,31 +8,41 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	3.30.5
+Version:	3.32.0
 Release:	1
 Group:		File tools
 License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
 BuildRequires:	gtk-doc
+BuildRequires:	gettext
 BuildRequires:	intltool
 BuildRequires:	pkgconfig(exempi-2.0)
 BuildRequires:	pkgconfig(gail-3.0)
 BuildRequires:	pkgconfig(gexiv2)
+BuildRequires:	pkgconfig(gio-2.0)
+BuildRequires:	pkgconfig(gio-unix-2.0)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.33.13
 BuildRequires:	pkgconfig(gobject-introspection-1.0)
+BuildRequires:	pkgconfig(gmodule-no-export-2.0)
+BuildRequires:	pkgconfig(gstreamer-tag-1.0)
 BuildRequires:	pkgconfig(gnome-autoar-0)
 BuildRequires:	pkgconfig(gnome-desktop-3.0) >= 3.0.0
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
+BuildRequires:	pkgconfig(gthread-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0) >= 3.5.12
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libnotify) >= 0.7.0
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
 BuildRequires:	pkgconfig(tracker-sparql-2.0)
 BuildRequires:	pkgconfig(x11)
-BuildRequires:	meson
+# 0.50.0 contains issues. 0.50.1 should fix it. So for now try force old.
+BuildRequires:	meson = 0.49.2
 BuildRequires:	pkgconfig(libseccomp)
-Suggests:	tracker
+
+Requires:	gvfs
+Requires:	gsettings-desktop-schemas
+Recommends:	tracker
 
 %description
 Nautilus is an excellent file manager for the GNOME desktop environment.
@@ -71,6 +81,8 @@ GObject Introspection interface description for %{name}.
 %apply_patches
 
 %build
+export CC=gcc
+export CXX=g++
 %meson \
 	-Ddocs=true \
 	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
@@ -109,6 +121,7 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 #{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
 %{_libdir}/%{name}/extensions-3.0/lib%{name}-image-properties.so
 %{_datadir}/metainfo/org.gnome.Nautilus.appdata.xml
+%{_libdir}/%{name}/extensions-3.0/libtotem-properties-page.so
 %{_iconsdir}/hicolor/*/apps/*gnome*.*
 
 
@@ -125,5 +138,5 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_libdir}/pkgconfig/*
 %{_datadir}/gir-1.0/Nautilus-%{api}.gir
 
-%exclude /usr/lib/debug/usr/lib64/nautilus/extensions-3.0/libnautilus-image-properties.so-3.28.1-1.x86_64.debug
+#exclude /usr/lib/debug/usr/lib64/nautilus/extensions-3.0/libnautilus-image-properties.so-3.28.1-1.x86_64.debug
 
