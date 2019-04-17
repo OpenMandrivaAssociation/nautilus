@@ -9,7 +9,7 @@
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
 Version:	3.32.0
-Release:	1
+Release:	2
 Group:		File tools
 License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
@@ -36,8 +36,7 @@ BuildRequires:	pkgconfig(libnotify) >= 0.7.0
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
 BuildRequires:	pkgconfig(tracker-sparql-2.0)
 BuildRequires:	pkgconfig(x11)
-# 0.50.0 contains issues. 0.50.1 should fix it. So for now try force old.
-BuildRequires:	meson = 0.49.2
+BuildRequires:	meson
 BuildRequires:	pkgconfig(libseccomp)
 
 Requires:	gvfs
