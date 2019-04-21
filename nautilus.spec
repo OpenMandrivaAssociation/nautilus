@@ -41,6 +41,9 @@ BuildRequires:	pkgconfig(libseccomp)
 
 Requires:	gvfs
 Requires:	gsettings-desktop-schemas
+# this crap is now required to launch nautilus...  (from 3.32.0)
+#it slows down the system. It could be optional but noo... Where are you going GNOME?
+Requires:	tracker-miners
 Recommends:	tracker
 
 %description
