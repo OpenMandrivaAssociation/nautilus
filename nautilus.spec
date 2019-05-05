@@ -83,8 +83,7 @@ GObject Introspection interface description for %{name}.
 %apply_patches
 
 %build
-#export CC=gcc
-#export CXX=g++
+
 %meson \
 	-Ddocs=true \
 	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
