@@ -8,8 +8,8 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	3.32.0
-Release:	2
+Version:	3.32.1
+Release:	1
 Group:		File tools
 License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
@@ -83,8 +83,7 @@ GObject Introspection interface description for %{name}.
 %apply_patches
 
 %build
-export CC=gcc
-export CXX=g++
+
 %meson \
 	-Ddocs=true \
 	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
