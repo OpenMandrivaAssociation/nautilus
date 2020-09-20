@@ -8,12 +8,14 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	3.36.3
+Version:	3.38.0
 Release:	1
 Group:		File tools
 License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
+
+BuildRequires:	appstream-util
 BuildRequires:	gtk-doc
 BuildRequires:	gettext
 BuildRequires:	intltool
@@ -34,9 +36,10 @@ BuildRequires:	pkgconfig(gtk+-3.0) >= 3.5.12
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libnotify) >= 0.7.0
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
-BuildRequires:	pkgconfig(tracker-sparql-2.0)
+BuildRequires:	pkgconfig(tracker-sparql-3.0)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	meson
+BuildRequires:  tracker
 BuildRequires:	pkgconfig(libseccomp)
 
 Requires:	gvfs
@@ -115,6 +118,9 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_datadir}/%{name}
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.service
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
+%{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Extract.service
+%{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Files.service
+%{_datadir}/tracker3/domain-ontologies/org.gnome.Nautilus.domain.rule
 %{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
 #{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.%{name}.gschema.xml
