@@ -14,6 +14,8 @@ Group:		File tools
 License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
+
+BuildRequires:	appstream-util
 BuildRequires:	gtk-doc
 BuildRequires:	gettext
 BuildRequires:	intltool
