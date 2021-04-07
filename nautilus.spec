@@ -8,7 +8,7 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	3.38.2
+Version:	40.0
 Release:	1
 Group:		File tools
 License:	GPLv2+
@@ -35,6 +35,8 @@ BuildRequires:	pkgconfig(gthread-2.0)
 BuildRequires:	pkgconfig(gtk+-3.0) >= 3.5.12
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libnotify) >= 0.7.0
+BuildRequires:  pkgconfig(libhandy-1)
+BuildRequires:  pkgconfig(libportal)
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
 BuildRequires:	pkgconfig(tracker-sparql-3.0)
 BuildRequires:	pkgconfig(x11)
