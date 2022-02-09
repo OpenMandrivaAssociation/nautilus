@@ -38,7 +38,9 @@ BuildRequires:	pkgconfig(gtk+-3.0) >= 3.5.12
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libnotify) >= 0.7.0
 BuildRequires:  pkgconfig(libhandy-1)
-BuildRequires:  pkgconfig(libportal)
+BuildRequires:	pkgconfig(libportal)
+BuildRequires:	pkgconfig(libportal-gtk3)
+BuildRequires:	pkgconfig(libportal-gtk4)
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
 BuildRequires:	pkgconfig(tracker-sparql-3.0)
 BuildRequires:	pkgconfig(x11)
