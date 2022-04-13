@@ -8,14 +8,12 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	41.2
-Release:	2
+Version:	42.0
+Release:	1
 Group:		File tools
 License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
-# Upstream patch to fix build with libportal 0.5
-Patch0:		https://gitlab.gnome.org/GNOME/nautilus/-/merge_requests/749.patch
 
 BuildRequires:	appstream-util
 BuildRequires:	gtk-doc
