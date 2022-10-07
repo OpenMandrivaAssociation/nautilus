@@ -8,7 +8,7 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	42.2
+Version:	43.0
 Release:	1
 Group:		File tools
 License:	GPLv2+
@@ -19,9 +19,11 @@ BuildRequires:	appstream-util
 BuildRequires:	gtk-doc
 BuildRequires:	gettext
 BuildRequires:	intltool
+BuildRequires:  pkgconfig(cloudproviders)
 BuildRequires:	pkgconfig(exempi-2.0)
 BuildRequires:	pkgconfig(gail-3.0)
 BuildRequires:	pkgconfig(gexiv2)
+BuildRequires:  pkgconfig(gi-docgen)
 BuildRequires:	pkgconfig(gio-2.0)
 BuildRequires:	pkgconfig(gio-unix-2.0)
 BuildRequires:	pkgconfig(glib-2.0) >= 2.33.13
@@ -29,10 +31,11 @@ BuildRequires:	pkgconfig(gobject-introspection-1.0)
 BuildRequires:	pkgconfig(gmodule-no-export-2.0)
 BuildRequires:	pkgconfig(gstreamer-tag-1.0)
 BuildRequires:	pkgconfig(gnome-autoar-0)
-BuildRequires:	pkgconfig(gnome-desktop-3.0) >= 3.0.0
+BuildRequires:	pkgconfig(gnome-desktop-4)
 BuildRequires:	pkgconfig(gsettings-desktop-schemas)
 BuildRequires:	pkgconfig(gthread-2.0)
-BuildRequires:	pkgconfig(gtk+-3.0) >= 3.5.12
+BuildRequires:	pkgconfig(gtk4)
+BuildRequires:  pkgconfig(libadwaita-1)
 BuildRequires:	pkgconfig(libexif)
 BuildRequires:	pkgconfig(libnotify) >= 0.7.0
 BuildRequires:  pkgconfig(libhandy-1)
