@@ -1,7 +1,7 @@
 %define url_ver	%(echo %{version}|cut -d. -f1,2)
 
-%define api	3.0
-%define major	1
+%define api	4.0
+%define major	4
 %define libname	%mklibname %{name}-extension %{major}
 %define devname	%mklibname -d %{name}-extension
 %define girname	%mklibname %{name}-gir %{api}
@@ -14,6 +14,7 @@ Group:		File tools
 License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
+Patch0:		nautilus-43.0-compile.patch
 
 BuildRequires:	appstream-util
 BuildRequires:	gtk-doc
@@ -89,14 +90,12 @@ Conflicts:	%{libname} < 3.1.3-3
 GObject Introspection interface description for %{name}.
 
 %prep
-%setup -q
-%autopatch -p1
-
-%build
-
+%autosetup -p1
 %meson \
 	-Ddocs=true \
 	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
+
+%build
 %meson_build
 
 %install
@@ -112,14 +111,14 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %find_lang %{name} --with-gnome --all-name
 
 %files -f %{name}.lang
-%doc NEWS
+%doc %{_docdir}/nautilus
 %dir %{_localstatedir}/lib/gnome/desktop
 %dir %{_localstatedir}/lib/gnome/
 #{_sysconfdir}/xdg/autostart/%{name}-autostart.desktop
 %{_bindir}/*
 %dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/extensions-3.0
-%{_libdir}/%{name}/extensions-3.0/lib%{name}-sendto.so
+%dir %{_libdir}/%{name}/extensions-2.0
+%dir %{_libdir}/%{name}/extensions-4
 #{_libexecdir}/%{name}-convert-metadata
 %{_datadir}/applications/*
 %{_datadir}/%{name}
@@ -133,9 +132,9 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_datadir}/glib-2.0/schemas/org.gnome.%{name}.gschema.xml
 %{_mandir}/man1/*
 #{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
-%{_libdir}/%{name}/extensions-3.0/lib%{name}-image-properties.so
+%{_libdir}/%{name}/extensions-4/lib%{name}-image-properties.so
 %{_datadir}/metainfo/org.gnome.Nautilus.appdata.xml
-%{_libdir}/%{name}/extensions-3.0/libtotem-properties-page.so
+%{_libdir}/%{name}/extensions-4/libtotem-properties-page.so
 %{_iconsdir}/hicolor/*/apps/*gnome*.*
 
 
@@ -146,11 +145,9 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_libdir}/girepository-1.0/Nautilus-%{api}.typelib
 
 %files -n %{devname}
-%doc %{_datadir}/gtk-doc/html/lib%{name}-extension
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %{_datadir}/gir-1.0/Nautilus-%{api}.gir
 
 #exclude /usr/lib/debug/usr/lib64/nautilus/extensions-3.0/libnautilus-image-properties.so-3.28.1-1.x86_64.debug
-

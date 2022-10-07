@@ -1,0 +1,16 @@
+diff -up nautilus-43.0/src/nautilus-file.c.omv~ nautilus-43.0/src/nautilus-file.c
+diff -up nautilus-43.0/src/nautilus-file.h.omv~ nautilus-43.0/src/nautilus-file.h
+--- nautilus-43.0/src/nautilus-file.h.omv~	2022-10-07 21:22:45.215401412 +0200
++++ nautilus-43.0/src/nautilus-file.h	2022-10-07 21:22:58.270483889 +0200
+@@ -244,9 +244,9 @@ gboolean                nautilus_file_ca
+ gboolean                nautilus_file_can_set_owner                     (NautilusFile                   *file);
+ gboolean                nautilus_file_can_get_group                     (NautilusFile                   *file);
+ gboolean                nautilus_file_can_set_group                     (NautilusFile                   *file);
+-uid_t                   nautilus_file_get_uid                           (NautilusFile                   *file);
++const uid_t             nautilus_file_get_uid                           (NautilusFile                   *file);
+ char *                  nautilus_file_get_owner_name                    (NautilusFile                   *file);
+-gid_t                   nautilus_file_get_gid                           (NautilusFile                   *file);
++const gid_t             nautilus_file_get_gid                           (NautilusFile                   *file);
+ char *                  nautilus_file_get_group_name                    (NautilusFile                   *file);
+ GList *                 nautilus_get_user_names                         (void);
+ GList *                 nautilus_get_all_group_names                    (void);
