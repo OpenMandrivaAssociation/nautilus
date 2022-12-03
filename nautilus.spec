@@ -14,7 +14,7 @@ Group:		File tools
 License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
-Patch0:		nautilus-43.0-compile.patch
+#Patch0:		nautilus-43.0-compile.patch
 
 # https://gitlab.gnome.org/GNOME/nautilus/-/merge_requests/977
 # https://bugzilla.redhat.com/show_bug.cgi?id=2127618
