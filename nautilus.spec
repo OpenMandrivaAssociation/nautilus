@@ -6,6 +6,9 @@
 %define devname	%mklibname -d %{name}-extension
 %define girname	%mklibname %{name}-gir %{api}
 
+-Wsometimes-uninitialized
+%global optflags %{optflags} -Wno-incompatible-function-pointer-types
+
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
 Version:	44.0
@@ -15,6 +18,7 @@ License:	GPLv2+
 Url:		http://www.gnome.org/projects/nautilus/
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
 #Patch0:		nautilus-43.0-compile.patch
+Patch1:		disable-werror-related-stuff.patch
 
 # https://gitlab.gnome.org/GNOME/nautilus/-/merge_requests/977
 # https://bugzilla.redhat.com/show_bug.cgi?id=2127618
@@ -103,8 +107,6 @@ GObject Introspection interface description for %{name}.
 	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
 
 %build
-export CC=gcc
-export CXX=g++
 %meson_build
 
 %install
