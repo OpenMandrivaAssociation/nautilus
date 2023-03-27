@@ -103,6 +103,8 @@ GObject Introspection interface description for %{name}.
 	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
 
 %build
+export CC=gcc
+export CXX=g++
 %meson_build
 
 %install
