@@ -6,9 +6,6 @@
 %define devname	%mklibname -d %{name}-extension
 %define girname	%mklibname %{name}-gir %{api}
 
--Wsometimes-uninitialized
-%global optflags %{optflags} -Wno-incompatible-function-pointer-types
-
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
 Version:	44.0
