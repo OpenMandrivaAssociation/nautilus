@@ -1,0 +1,11 @@
+diff -uraN nautilus-44.0/meson.build omv-nautilus-44.0/meson.build
+--- nautilus-44.0/meson.build	2023-03-17 10:06:25.000000000 +0100
++++ omv-nautilus-44.0/meson.build	2023-03-27 16:49:16.299004653 +0200
+@@ -60,7 +60,6 @@
+     '-Werror=shadow',
+     '-Werror=strict-prototypes',
+     '-Werror=undef',
+-    '-Werror=uninitialized',
+     # Context: https://gitlab.com/freedesktop-sdk/freedesktop-sdk/commit/ce54a2527555e51e4ebf4cce9cbb6259cafa89a4
+     # -O2 and -fexceptions unmask some cases of -Wmaybe-uninitialized, which
+     # become errors for some reason (I’m guessing because of the
