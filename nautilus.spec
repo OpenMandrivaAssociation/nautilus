@@ -134,7 +134,7 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_mandir}/man1/*
 #{_datadir}/appdata/org.gnome.Nautilus.appdata.xml
 %{_libdir}/%{name}/extensions-4/lib%{name}-image-properties.so
-%{_datadir}/metainfo/org.gnome.Nautilus.appdata.xml
+%{_datadir}/metainfo/org.gnome.Nautilus.metainfo.xml
 %{_libdir}/%{name}/extensions-4/libtotem-properties-page.so
 %{_iconsdir}/hicolor/*/apps/*gnome*.*
 
