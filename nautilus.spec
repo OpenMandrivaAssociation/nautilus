@@ -100,6 +100,8 @@ GObject Introspection interface description for %{name}.
 
 %prep
 %autosetup -p1
+export CC=gcc
+export CXX=g++
 %meson \
 	-Ddocs=true \
 	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
