@@ -1,5 +1,7 @@
 %define url_ver	%(echo %{version}|cut -d. -f1,2)
 
+%global optflags %{optflags} -Wno-sometimes-uninitialized
+
 %define api	4.0
 %define major	4
 %define libname	%mklibname %{name}-extension %{major}
