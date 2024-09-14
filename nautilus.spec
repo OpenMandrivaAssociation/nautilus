@@ -8,14 +8,20 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	46.2
+Version:	47.rc
 Release:	1
 Group:		File tools
 License:	GPLv2+
 Url:		https://www.gnome.org/projects/nautilus/
 Source0:	https://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
-#Patch0:		nautilus-43.0-compile.patch
-#Patch2:		disable-werror-related-stuff.patch
+
+# These patches all revert commits that handle 'tracker' being renamed
+# to 'localsearch', because that change hasn't landed in Cooker yet
+# Drop these patches when the package gets renamed
+Patch0:          0001-Revert-general-React-to-tracker-projects-rename.patch
+Patch1:          0002-Revert-test-Update-to-localsearch-CLI-rename.patch
+Patch2:          0003-Revert-tests-Use-localsearch3-test-sandbox.patch
+
 
 BuildRequires:	appstream-util
 BuildRequires:	gtk-doc
