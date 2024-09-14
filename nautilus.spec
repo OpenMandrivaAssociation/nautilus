@@ -1,6 +1,6 @@
 %define url_ver	%(echo %{version}|cut -d. -f1,2)
 
-%global optflags %{optflags} -Wno-sometimes-uninitialized
+#global optflags %{optflags} -Wno-sometimes-uninitialized
 
 %define api	4.0
 %define major	4
@@ -11,7 +11,7 @@
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
 Version:	47.rc
-Release:	1
+Release:	2
 Group:		File tools
 License:	GPLv2+
 Url:		https://www.gnome.org/projects/nautilus/
@@ -105,6 +105,8 @@ GObject Introspection interface description for %{name}.
 	-Dselinux=%{?with_selinux:true}%{?!with_selinux:false}
 
 %build
+export CC=gcc
+export CXX=g++
 %meson_build
 
 %install
