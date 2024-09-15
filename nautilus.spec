@@ -1,6 +1,7 @@
 %define url_ver	%(echo %{version}|cut -d. -f1,2)
 
-%global optflags %{optflags} -Wno-sometimes-uninitialized
+# Needed in 47.rc, looks like fixed in stable 47.0
+#global optflags %{optflags} -Wno-sometimes-uninitialized
 
 %define api	4.0
 %define major	4
@@ -10,7 +11,7 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	47.rc
+Version:	47.0
 Release:	1
 Group:		File tools
 License:	GPLv2+
@@ -146,7 +147,6 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_libdir}/%{name}/extensions-4/libtotem-properties-page.so
 %{_iconsdir}/hicolor/*/apps/*gnome*.*
 
-
 %files -n %{libname}
 %{_libdir}/libnautilus-extension.so.%{major}*
 
@@ -158,5 +158,3 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
 %{_datadir}/gir-1.0/Nautilus-%{api}.gir
-
-#exclude /usr/lib/debug/usr/lib64/nautilus/extensions-3.0/libnautilus-image-properties.so-3.28.1-1.x86_64.debug
