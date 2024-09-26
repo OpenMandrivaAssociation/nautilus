@@ -12,7 +12,7 @@
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
 Version:	47.0
-Release:	1
+Release:	2
 Group:		File tools
 License:	GPLv2+
 Url:		https://www.gnome.org/projects/nautilus/
@@ -24,6 +24,10 @@ Source0:	https://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{v
 Patch0:          0001-Revert-general-React-to-tracker-projects-rename.patch
 Patch1:          0002-Revert-test-Update-to-localsearch-CLI-rename.patch
 Patch2:          0003-Revert-tests-Use-localsearch3-test-sandbox.patch
+
+# Not merged (and it probably won't be)
+# Added support for .tar.gz compression in nautilus
+Patch3:		https://gitlab.gnome.org/GNOME/nautilus/-/merge_requests/1596.patch
 
 
 BuildRequires:	appstream-util
