@@ -1,0 +1,65 @@
+From d6b733a509897ad19ae6939b05652acbe3ccbc75 Mon Sep 17 00:00:00 2001
+From: Lucas Fryzek <lucas.fryzek@fryzekconcepts.com>
+Date: Thu, 22 Aug 2024 13:20:37 +0100
+Subject: [PATCH] Add gzip compression option
+
+gzip compression is still widely used and sometimes you want to
+share a file to be used on a system that doesn't have xz available.
+---
+ src/nautilus-compress-dialog.c    | 8 ++++++++
+ src/nautilus-files-view.c         | 7 +++++++
+ src/nautilus-global-preferences.h | 1 +
+ 3 files changed, 16 insertions(+)
+
+diff --git a/src/nautilus-compress-dialog.c b/src/nautilus-compress-dialog.c
+index 0b30f29329..d395da5bc5 100644
+--- a/src/nautilus-compress-dialog.c
++++ b/src/nautilus-compress-dialog.c
+@@ -264,6 +264,14 @@ extension_combo_row_setup (NautilusCompressDialog *self)
+                                        ".tar.xz",
+                                        _("TAR (.tar.xz)"),
+                                        _("Smaller archives but Linux and Mac only."));
++
++    g_list_store_append (store, item);
++    g_object_unref (item);
++    item = nautilus_compress_item_new (NAUTILUS_COMPRESSION_TAR_GZIP,
++                                       ".tar.gz",
++                                       _("TAR (.tar.gz)"),
++                                       _("Larger archives but Linux and Mac only."));
++
+     g_list_store_append (store, item);
+     g_object_unref (item);
+     item = nautilus_compress_item_new (NAUTILUS_COMPRESSION_7ZIP,
+diff --git a/src/nautilus-files-view.c b/src/nautilus-files-view.c
+index 868e0463e8..d576351e3f 100644
+--- a/src/nautilus-files-view.c
++++ b/src/nautilus-files-view.c
+@@ -2333,6 +2333,13 @@ create_archive_callback (const char *archive_name,
+         }
+         break;
+ 
++        case NAUTILUS_COMPRESSION_TAR_GZIP:
++        {
++            format = AUTOAR_FORMAT_TAR;
++            filter = AUTOAR_FILTER_GZIP;
++        }
++        break;
++
+         case NAUTILUS_COMPRESSION_7ZIP:
+         {
+             format = AUTOAR_FORMAT_7ZIP;
+diff --git a/src/nautilus-global-preferences.h b/src/nautilus-global-preferences.h
+index e64fcdb5cf..99043612cf 100644
+--- a/src/nautilus-global-preferences.h
++++ b/src/nautilus-global-preferences.h
+@@ -69,6 +69,7 @@ typedef enum
+ {
+         NAUTILUS_COMPRESSION_ZIP = 0,
+         NAUTILUS_COMPRESSION_TAR_XZ,
++        NAUTILUS_COMPRESSION_TAR_GZIP,
+         NAUTILUS_COMPRESSION_7ZIP,
+         NAUTILUS_COMPRESSION_ENCRYPTED_ZIP
+ } NautilusCompressionFormat;
+-- 
+GitLab
+
