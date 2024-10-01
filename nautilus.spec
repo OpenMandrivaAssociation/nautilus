@@ -133,7 +133,6 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_datadir}/dbus-1/services/org.freedesktop.FileManager1.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Extract.service
 %{_datadir}/dbus-1/services/org.gnome.Nautilus.Tracker3.Miner.Files.service
-%{_datadir}/tracker3/domain-ontologies/org.gnome.Nautilus.domain.rule
 %{_datadir}/gnome-shell/search-providers/org.gnome.Nautilus.search-provider.ini
 #{_datadir}/GConf/gsettings/%{name}.convert
 %{_datadir}/glib-2.0/schemas/org.gnome.%{name}.gschema.xml
