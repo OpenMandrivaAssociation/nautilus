@@ -12,23 +12,15 @@
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
 Version:	47.0
-Release:	2
+Release:	3
 Group:		File tools
 License:	GPLv2+
 Url:		https://www.gnome.org/projects/nautilus/
 Source0:	https://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
 
-# These patches all revert commits that handle 'tracker' being renamed
-# to 'localsearch', because that change hasn't landed in Cooker yet
-# Drop these patches when the package gets renamed
-Patch0:          0001-Revert-general-React-to-tracker-projects-rename.patch
-Patch1:          0002-Revert-test-Update-to-localsearch-CLI-rename.patch
-Patch2:          0003-Revert-tests-Use-localsearch3-test-sandbox.patch
-
 # Not merged (and it probably won't be)
 # Added support for .tar.gz compression in nautilus
 Patch3:		https://gitlab.gnome.org/GNOME/nautilus/-/merge_requests/1596.patch
-
 
 BuildRequires:	appstream-util
 BuildRequires:	gtk-doc
@@ -58,18 +50,18 @@ BuildRequires:	pkgconfig(libportal)
 BuildRequires:	pkgconfig(libportal-gtk3)
 BuildRequires:	pkgconfig(libportal-gtk4)
 BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
-BuildRequires:	pkgconfig(tracker-sparql-3.0)
+BuildRequires:	pkgconfig(tinysparql-3.0)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	meson
-BuildRequires:  tracker
+BuildRequires:  tinysparql
 BuildRequires:	pkgconfig(libseccomp)
 
 Requires:	gvfs
 Requires:	gsettings-desktop-schemas
 # this crap is now required to launch nautilus...  (from 3.32.0)
 #it slows down the system. It could be optional but noo... Where are you going GNOME?
-Requires:	tracker-miners
-Recommends:	tracker
+Requires:	localsearch
+Recommends:	tinysparql 
 
 %description
 Nautilus is an excellent file manager for the GNOME desktop environment.
