@@ -22,6 +22,7 @@ Source0:	https://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{v
 # Added support for .tar.gz compression in nautilus
 Patch3:		https://gitlab.gnome.org/GNOME/nautilus/-/merge_requests/1596.patch
 
+BuildRequires:	appstream
 BuildRequires:	appstream-util
 BuildRequires:	gtk-doc
 BuildRequires:	gettext
