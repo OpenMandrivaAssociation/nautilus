@@ -11,14 +11,14 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	48.0
+Version:	48.2
 Release:	1
 Group:		File tools
 License:	GPLv2+
 Url:		https://www.gnome.org/projects/nautilus/
 Source0:	https://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{version}.tar.xz
 
-# Not merged (and it probably won't be)
+# Not merged (and probably won't be)
 # Added support for .tar.gz compression in nautilus
 Patch3:		https://gitlab.gnome.org/GNOME/nautilus/-/merge_requests/1596.patch
 
@@ -28,6 +28,7 @@ BuildRequires:	gtk-doc
 BuildRequires:	gettext
 BuildRequires:	intltool
 BuildRequires:  localsearch
+BuildRequires:	desktop-file-utils
 BuildRequires:  pkgconfig(cloudproviders)
 BuildRequires:	pkgconfig(exempi-2.0)
 BuildRequires:	pkgconfig(gail-3.0)
