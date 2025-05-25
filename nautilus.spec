@@ -28,6 +28,7 @@ BuildRequires:	gtk-doc
 BuildRequires:	gettext
 BuildRequires:	intltool
 BuildRequires:  localsearch
+BuildRequires:	desktop-file-utils
 BuildRequires:  pkgconfig(cloudproviders)
 BuildRequires:	pkgconfig(exempi-2.0)
 BuildRequires:	pkgconfig(gail-3.0)
