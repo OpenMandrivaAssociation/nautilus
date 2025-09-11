@@ -156,4 +156,4 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
-%{_datadir}/gir-1.0/Nautilus-%{api}.gir
+#{_datadir}/gir-1.0/Nautilus-%{api}.gir
