@@ -3,11 +3,13 @@
 # Needed in 47.rc, looks like fixed in stable 47.0
 #global optflags %{optflags} -Wno-sometimes-uninitialized
 
-%define api	4.0
+%define api	4.1
 %define major	4
-%define libname	%mklibname %{name}-extension %{major}
+%define libname	%mklibname %{name}-extension
+%define oldlibname	%mklibname %{name}-extension 4
 %define devname	%mklibname -d %{name}-extension
-%define girname	%mklibname %{name}-gir %{api}
+%define girname	%mklibname %{name}-gir
+%define oldgirname	%mklibname %{name}-gir 4
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
@@ -73,6 +75,7 @@ Nautilus is an excellent file manager for the GNOME desktop environment.
 Summary:	Libraries for Nautilus File manager
 Group:		System/Libraries
 Obsoletes:	%{_lib}nautilus1 < 3.8.1-2
+%rename %{oldlibname}
 
 %description -n %{libname}
 Nautilus is an excellent file manager for the GNOME desktop environment.
@@ -94,6 +97,7 @@ files to allow you to develop nautilus components.
 Summary:	GObject Introspection interface description for %{name}
 Group:		System/Libraries
 Conflicts:	%{libname} < 3.1.3-3
+%rename %{oldgirname}
 
 %description -n %{girname}
 GObject Introspection interface description for %{name}.
@@ -150,10 +154,10 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_libdir}/libnautilus-extension.so.%{major}*
 
 %files -n %{girname}
-#{_libdir}/girepository-1.0/Nautilus-%{api}.typelib
+%{_libdir}/girepository-1.0/Nautilus-%{api}.typelib
 
 %files -n %{devname}
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
-#{_datadir}/gir-1.0/Nautilus-%{api}.gir
+%{_datadir}/gir-1.0/Nautilus-%{api}.gir
