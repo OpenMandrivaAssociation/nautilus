@@ -150,7 +150,7 @@ mkdir -p %{buildroot}%{_localstatedir}/lib/gnome/desktop \
 %{_libdir}/libnautilus-extension.so.%{major}*
 
 %files -n %{girname}
-%{_libdir}/girepository-1.0/Nautilus-%{api}.typelib
+#{_libdir}/girepository-1.0/Nautilus-%{api}.typelib
 
 %files -n %{devname}
 %{_includedir}/*
