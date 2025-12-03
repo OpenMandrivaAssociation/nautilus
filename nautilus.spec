@@ -14,7 +14,7 @@
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
 Version:	49.2
-Release:	1
+Release:	2
 Group:		File tools
 License:	GPLv2+
 Url:		https://www.gnome.org/projects/nautilus/
@@ -23,6 +23,8 @@ Source0:	https://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{v
 # Not merged (and probably won't be)
 # Added support for .tar.gz compression in nautilus
 Patch3:		https://gitlab.gnome.org/GNOME/nautilus/-/merge_requests/1596.patch
+# Until gnome-terminal is not fully ready for gtk4, lets use ptyxis or console. For now Ptyxis looks more complete, so we'll use it.
+Patch4:		https://src.fedoraproject.org/rpms/nautilus/blob/rawhide/f/default-terminal.patch
 
 BuildRequires:	appstream
 BuildRequires:	appstream-util
