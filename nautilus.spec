@@ -13,8 +13,8 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	49.2
-Release:	2
+Version:	49.3
+Release:	1
 Group:		File tools
 License:	GPLv2+
 Url:		https://www.gnome.org/projects/nautilus/
