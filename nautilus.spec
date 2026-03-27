@@ -13,8 +13,8 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	49.3
-Release:	2
+Version:	50.0
+Release:	1
 Group:		File tools
 License:	GPLv2+
 Url:		https://www.gnome.org/projects/nautilus/
@@ -56,7 +56,7 @@ BuildRequires:  pkgconfig(libhandy-1)
 BuildRequires:	pkgconfig(libportal)
 BuildRequires:	pkgconfig(libportal-gtk3)
 BuildRequires:	pkgconfig(libportal-gtk4)
-BuildRequires:	pkgconfig(libxml-2.0) >= 2.7.8
+BuildRequires:	pkgconfig(libxml-2.0) >= 2.15.2
 BuildRequires:	pkgconfig(tinysparql-3.0)
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	meson
