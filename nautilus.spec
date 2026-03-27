@@ -62,13 +62,17 @@ BuildRequires:	pkgconfig(x11)
 BuildRequires:	meson
 BuildRequires:  tinysparql
 BuildRequires:	pkgconfig(libseccomp)
+BuildRequires:  pkgconfig(glycin-gtk4-2)            
+BuildRequires:  pkgconfig(blueprint-compiler)
 
 Requires:	gvfs
 Requires:	gsettings-desktop-schemas
 # this crap is now required to launch nautilus...  (from 3.32.0)
 #it slows down the system. It could be optional but noo... Where are you going GNOME?
 Requires:	localsearch
-Recommends:	tinysparql 
+Recommends:	tinysparql
+Recommends: glycin-thumbnailer
+Recommends: gst-thumbnailers
 
 %description
 Nautilus is an excellent file manager for the GNOME desktop environment.
