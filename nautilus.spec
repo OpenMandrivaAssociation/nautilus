@@ -36,7 +36,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:  pkgconfig(cloudproviders)
 BuildRequires:	pkgconfig(exempi-2.0)
 BuildRequires:	pkgconfig(gail-3.0)
-BuildRequires:	pkgconfig(gexiv2)
+BuildRequires:	pkgconfig(gexiv2-0.16)
 BuildRequires:  pkgconfig(gi-docgen)
 BuildRequires:	pkgconfig(gio-2.0)
 BuildRequires:	pkgconfig(gio-unix-2.0)
