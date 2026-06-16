@@ -13,7 +13,7 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	50.1
+Version:	50.2.2
 Release:	1
 Group:		File tools
 License:	GPLv2+
@@ -65,12 +65,12 @@ BuildRequires:	pkgconfig(libseccomp)
 BuildRequires:  pkgconfig(glycin-gtk4-2)            
 BuildRequires:  pkgconfig(blueprint-compiler)
 
-Requires:	gvfs
-Requires:	gsettings-desktop-schemas
+Requires: gvfs
+Requires: gsettings-desktop-schemas
 # this crap is now required to launch nautilus...  (from 3.32.0)
 #it slows down the system. It could be optional but noo... Where are you going GNOME?
-Requires:	localsearch
-Recommends:	tinysparql
+Requires: localsearch
+Recommends: tinysparql
 Recommends: glycin-thumbnailer
 Recommends: gst-thumbnailers
 
