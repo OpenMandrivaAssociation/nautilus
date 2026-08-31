@@ -13,7 +13,7 @@
 
 Summary:	File manager for the GNOME desktop environment
 Name:		nautilus
-Version:	50.2.2
+Version:	50.3
 Release:	1
 Group:		File tools
 License:	GPLv2+
@@ -23,8 +23,9 @@ Source0:	https://ftp.gnome.org/pub/GNOME/sources/nautilus/%{url_ver}/%{name}-%{v
 # Not merged (and probably won't be)
 # Added support for .tar.gz compression in nautilus
 Patch3:		https://gitlab.gnome.org/GNOME/nautilus/-/merge_requests/1596.patch
+# revert to gnome-t.
 # Until gnome-terminal is not fully ready for gtk4, lets use ptyxis or console. For now Ptyxis looks more complete, so we'll use it.
-Patch4:		https://src.fedoraproject.org/rpms/nautilus/blob/rawhide/f/default-terminal.patch
+#Patch4:		https://src.fedoraproject.org/rpms/nautilus/blob/rawhide/f/default-terminal.patch
 
 BuildRequires:	appstream
 BuildRequires:	appstream-util
@@ -68,7 +69,7 @@ BuildRequires:  pkgconfig(blueprint-compiler)
 Requires: gvfs
 Requires: gsettings-desktop-schemas
 # this crap is now required to launch nautilus...  (from 3.32.0)
-#it slows down the system. It could be optional but noo... Where are you going GNOME?
+# it slows down the system. It could be optional but noo... Where are you going GNOME?
 Requires: localsearch
 Recommends: tinysparql
 Recommends: glycin-thumbnailer
